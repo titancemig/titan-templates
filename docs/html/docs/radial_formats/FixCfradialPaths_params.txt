@@ -1,0 +1,161 @@
+/**********************************************************************
+ * TDRP params for FixCfradialPaths
+ **********************************************************************/
+
+//======================================================================
+//
+// Fixes the times in the file names of CfrRadial files. i.e. sets the 
+//   file name to appropriately reflect the start or end time.
+//
+//======================================================================
+ 
+//======================================================================
+//
+// DEBUGGING.
+//
+//======================================================================
+ 
+///////////// debug ///////////////////////////////////
+//
+// Debug option.
+// If set, debug messages will be printed appropriately.
+//
+// Type: enum
+// Options:
+//     DEBUG_OFF
+//     DEBUG_NORM
+//     DEBUG_VERBOSE
+//     DEBUG_EXTRA
+//
+
+debug = DEBUG_OFF;
+
+///////////// instance ////////////////////////////////
+//
+// Program instance for process registration.
+// This application registers with procmap. This is the instance used 
+//   for registration.
+// Type: string
+//
+
+instance = "test";
+
+//======================================================================
+//
+// DATA INPUT.
+//
+//======================================================================
+ 
+///////////// input_dir ///////////////////////////////
+//
+// Input directory for searching for files.
+// Files will be searched for in this directory.
+// Type: string
+//
+
+input_dir = ".";
+
+///////////// mode ////////////////////////////////////
+//
+// Operating mode.
+// In REALTIME mode, the program waits for a new input file.  In ARCHIVE 
+//   mode, it moves through the data between the start and end times set 
+//   on the command line. In FILELIST mode, it moves through the list of 
+//   file names specified on the command line. Paths (in ARCHIVE mode, at 
+//   least) MUST contain a day-directory above the data file -- 
+//   ./data_file.ext will not work as a file path, but 
+//   ./yyyymmdd/data_file.ext will.
+//
+// Type: enum
+// Options:
+//     REALTIME
+//     ARCHIVE
+//     FILELIST
+//
+
+mode = REALTIME;
+
+///////////// max_realtime_data_age_secs //////////////
+//
+// Maximum age of realtime data (secs).
+// Only data less old than this will be used.
+// Type: int
+//
+
+max_realtime_data_age_secs = 300;
+
+//======================================================================
+//
+// RENAME THE FILE BASED ON DATA TIME.
+//
+//======================================================================
+ 
+///////////// output_filename_mode ////////////////////
+//
+// Mode for computing output file name.
+// START_AND_END_TIMES: include both start and end times in file name. 
+//   START_TIME_ONLY: include only start time in file name. END_TIME_ONLY: 
+//   include only end time in file name.
+//
+// Type: enum
+// Options:
+//     START_AND_END_TIMES
+//     START_TIME_ONLY
+//     END_TIME_ONLY
+//
+
+output_filename_mode = START_AND_END_TIMES;
+
+///////////// file_rename /////////////////////////////
+//
+// Mode for renaming the file.
+// RENAME_FILE_IN_PLACE: do not move the file, rename it in the current 
+//   directory. COPY_FILE: make a copy into 'copy_dir'. 
+//   CREATE_SYMBOLIC_LINK: create symbolic links in 'link_dir'.
+//
+// Type: enum
+// Options:
+//     NO_ACTION
+//     RENAME_IN_PLACE
+//     COPY_FILE
+//     CREATE_SYMBOLIC_LINK
+//
+
+file_rename = NO_ACTION;
+
+///////////// copy_dir ////////////////////////////////
+//
+// Output directory for copied files.
+// COPY_FILE mode only.
+// Type: string
+//
+
+copy_dir = "./copy";
+
+///////////// link_dir ////////////////////////////////
+//
+// Directory for symbolic links.
+// CREATE_SYMBOLIC_LINK mode only.
+// Type: string
+//
+
+link_dir = "./links";
+
+///////////// append_day_dir_to_output_dir ////////////
+//
+// Add the day directory to the output directory.
+// Path will be dir/yyyymmdd/filename.
+// Type: boolean
+//
+
+append_day_dir_to_output_dir = TRUE;
+
+///////////// append_year_dir_to_output_dir ///////////
+//
+// Add the year directory to the output directory.
+// Path will be dir/yyyy/yyyymmdd/filename.
+// Type: boolean
+//
+
+append_year_dir_to_output_dir = FALSE;
+

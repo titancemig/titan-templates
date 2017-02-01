@@ -1,0 +1,77 @@
+TITAN RELEASE NOTES - 2008/06/12
+================================
+
+1. Added parameters to the Titan application
+---------------------------------------------
+
+The Titan application was upgraded to allow for the following:
+
+(a) Computation of storm tops using a threshold different from the
+main storm identification threshold.
+
+(b) Computation of precipitation flux from the lowest valid CAPPI,
+or from a CAPPI at a specified height.
+
+(c) Computation of the 2D reflectivity histogram from the CAPPI used
+for computing the precip. Previously, this was computed using a
+column-max reflectivity. This remains the default.
+
+The new parameters are listed below, along with their default values.
+
+//======================================================================
+//
+// PRECIP RATE AND MASS PARAMETERS.
+//
+//======================================================================
+ 
+///////////// precip_computation_mode /////////////////
+//
+// Mode for computing precipitation.
+// PRECIP_FROM_COLUMN_MAX: compute precip from the column-max 
+//   reflectivity.
+
+// PRECIP_AT_SPECIFIED_HT: specify the height of the plane from which 
+//   precip is to be computed. See 'precip_plane_ht'.
+
+// PRECIP_FROM_LOWEST_VALID_HT: compute precip from the lowest valid 
+//   plane in the storm, i.e. the CAPPI corresponding to 'base_threshold'.
+//
+// Type: enum
+// Options:
+//     PRECIP_FROM_COLUMN_MAX
+//     PRECIP_AT_SPECIFIED_HT
+//     PRECIP_AT_LOWEST_VALID_HT
+//
+
+precip_computation_mode = PRECIP_FROM_COLUMN_MAX;
+
+///////////// precip_plane_ht /////////////////////////
+//
+// Height of precip plane (km).
+// See 'precip_mode'. This is the height, in km MSL, of the plane from 
+//   which precip will be computed if PRECIP_AT_SPECIFIED_HT mode is 
+//   active.
+// Type: float
+//
+
+precip_plane_ht = 2;
+
+//======================================================================
+//
+// REFLECTIVITY DISTRIBUTION.
+//
+// NOTE: the 2D reflectivity histogram will be computed for a plane in 
+//   the same manner as precipitation. See 'precip_mode' parameter for 
+//   more details.
+//
+//======================================================================
+ 
+///////////// dbz_hist_interval ///////////////////////
+//
+// Dbz histogram interval.
+// Reflectivity interval for the 2-D and 3-D reflectivity distributions.
+// Type: float
+//
+
+dbz_hist_interval = 3;
+

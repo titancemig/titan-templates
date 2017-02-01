@@ -1,0 +1,134 @@
+Usage: RadxEvad [args as below]
+Options:
+
+  [ -h ] produce this list.
+
+  [ -ag ] aggregate sweep files into volume on read.
+          Files with the SAME VOLUME NUMBER in the name are aggregated.
+          Applies to CfRadial and DORADE sweep files.
+
+  [ -ag_all ] aggregate files in input list on read.
+          ALL FILES in the input list are aggregated into a volume.
+          See '-f' option.
+          Applies to CfRadial and DORADE sweep files.
+
+  [ -alt ? ] override radar altitude (m)
+
+  [ -cfradial ] convert to cfradial (the default)
+
+  [ -cf_classic ] output classic-style netcdf (the default)
+  [ -cf_netcdf4 ] output netcdf4 style
+  [ -cf_classic4 ] output classic-style netcdf4
+  [ -cf_nc64bit ] output 64-bit NC netcdf
+                  The above only apply to cfradial output.
+
+  [ -const_ngates ] force number of gates constant for all rays
+                    Added gates will be filled with missing values
+
+  [ -compress ? ] compress output
+                  specifiy compression level [1-9]
+                  For cfradial, forces netcdf4 mode
+
+  [ -d, -debug ] print debug messages
+
+  [ -dorade ] convert to dorade
+
+  [ -disag ] dis-aggregate into sweep files on write
+          optional for CfRadial files
+          always applies to DORADE sweep files
+
+  [ -fixed_angle ? ] set single fixed_angle
+              or minimum - see '-fixed_ang_max'
+
+  [ -fixed_angle_max ? ] set max fixed_angle
+                  use '-fixed_ang' for setting minimum
+
+  [ -end "yyyy mm dd hh mm ss"] end time
+           Sets mode to ARCHIVE
+
+  [ -f, -paths ? ] set file paths
+           Sets mode to FILELIST
+
+  [ -field ? ] Specify particular field
+     Specify name or number
+     Use multiple -field args for multiple fields
+     If not specified, all fields will be used
+
+  [ -foray ] convert to FORAY-1 netcdf
+
+  [ -force_vary ] force use of ragged arrays for CfRadial
+     even if ngates is constant for all rays
+
+  [ -indir ? ] set input directory
+
+  [ -keep_long ] keep long range rays
+                 Keep NEXRAD long-range non-Doppler sweeps
+                 Default is to remove them
+
+  [ -lat ? ] override radar latitude (deg)
+
+  [ -lon ? ] override radar longitude (deg)
+
+  [ -ldata ? ] write _latest_data_info files
+
+  [ -native ] output in host-native byte ordering
+              instead of swapping into big-endian
+
+  [ -nexrad ] convert to NEXRAD archive level 2
+
+  [ -outdir ? ] set output directory
+
+  [ -out_end ? ] compute output path using end time
+                 default is to use both start and end times
+
+  [ -out_start ? ] compute output path using start time
+                   default is to use both start and end times
+
+  [ -rem_miss ] remove rays in which data at all gates and
+                for all fields is missing
+
+  [ -rem_short ] remove short range rays
+                 Remove NEXRAD short-range Doppler sweeps
+
+  [ -start "yyyy mm dd hh mm ss"] start time
+           Sets mode to ARCHIVE
+
+  [ -sweep ? ] set single sweep number
+               or minimum - see '-sweep_max'
+
+  [ -sweep_max ? ] set max sweep number
+                   use '-sweep' for setting minimum
+
+  [ -trim_sur ] trim surveillance sweeps to 360 degrees
+                Remove extra rays in each surveillance sweep
+
+  [ -uf ] convert to universal format
+
+  [ -v, -verbose ] print verbose debug messages
+
+  [ -vv, -extra ] print extra verbose debug messages
+
+  [ -write_other ] option to write other fields unchanged.
+    Default is that if -fields is used, only the specified fields
+    will be written in the output files.
+
+
+NOTE: You do not need to use the params option (see below).
+      If no params are specified, you deal with the whole file.
+
+TDRP args: [options as below]
+   [ -params path ] specify params file path
+   [ -check_params] check which params are not set
+   [ -print_params [mode]] print parameters
+     using following modes, default mode is 'norm'
+       short:   main comments only, no help or descr
+                structs and arrays on a single line
+       norm:    short + descriptions and help
+       long:    norm  + arrays and structs expanded
+       verbose: long  + private params included
+       short_expand:   short with env vars expanded
+       norm_expand:    norm with env vars expanded
+       long_expand:    long with env vars expanded
+       verbose_expand: verbose with env vars expanded
+   [ -tdrp_debug] debugging prints for tdrp
+   [ -tdrp_usage] print this usage

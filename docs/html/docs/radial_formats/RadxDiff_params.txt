@@ -1,0 +1,503 @@
+/**********************************************************************
+ * TDRP params for RadxDiff
+ **********************************************************************/
+
+//======================================================================
+//
+// Checks 2 Radx-supported files for differences.
+//
+// Prints report to stdout. Returns 0 on success, 1 on failure.
+//
+//======================================================================
+ 
+//======================================================================
+//
+// DEBUGGING.
+//
+//======================================================================
+ 
+///////////// debug ///////////////////////////////////
+//
+// Debug option.
+// If set, debug messages will be printed appropriately.
+//
+// Type: enum
+// Options:
+//     DEBUG_OFF
+//     DEBUG_NORM
+//     DEBUG_VERBOSE
+//     DEBUG_EXTRA
+//
+
+debug = DEBUG_OFF;
+
+//======================================================================
+//
+// READING THE DATA.
+//
+// The most common option is to specify the file paths.
+//
+//======================================================================
+ 
+///////////// search_mode /////////////////////////////
+//
+// Mode for finding files.
+// SEARCH_BY_PATH: use specified paths. SEARCH_BY_TIME: find files by 
+//   time, given the directories and search criteria.
+//
+// Type: enum
+// Options:
+//     SEARCH_BY_PATH
+//     SEARCH_BY_TIME
+//
+
+search_mode = SEARCH_BY_PATH;
+
+//======================================================================
+//
+// SEARCH_BY_PATH.
+//
+//======================================================================
+ 
+///////////// file1_path //////////////////////////////
+//
+// Full path for file1.
+// Type: string
+//
+
+file1_path = "/tmp/file1";
+
+///////////// file2_path //////////////////////////////
+//
+// Full path for file2.
+// Type: string
+//
+
+file2_path = "/tmp/file2";
+
+//======================================================================
+//
+// SEARCH_BY_TIME.
+//
+//======================================================================
+ 
+///////////// file1_dir ///////////////////////////////
+//
+// Data directory for file1.
+// See file1_specify_by_time.
+// Type: string
+//
+
+file1_dir = ".";
+
+///////////// file2_dir ///////////////////////////////
+//
+// Data directory for file2.
+// See file2_specify_by_time.
+// Type: string
+//
+
+file2_dir = ".";
+
+///////////// time_mode ///////////////////////////////
+//
+// Mode for searching for files in time domain.
+// For all except LATEST, you must specify the search time and the 
+//   search margin.
+//
+// Type: enum
+// Options:
+//     READ_LATEST
+//     READ_CLOSEST
+//     READ_FIRST_BEFORE
+//     READ_FIRST_AFTER
+//
+
+time_mode = READ_LATEST;
+
+///////////// read_search_time ////////////////////////
+//
+// Search time for files.
+// Time for data requested. Format is YYYY MM DD HH MM SS.
+// Type: string
+//
+
+read_search_time = "1970 01 01 00 00 00";
+
+///////////// read_search_margin //////////////////////
+//
+// Margin around search time (secs).
+// Applies to all search modes except LATEST.
+// Type: int
+//
+
+read_search_margin = 3600;
+
+//======================================================================
+//
+// FIELDS TO COMPARE.
+//
+//======================================================================
+ 
+///////////// specify_field_names /////////////////////
+//
+// Option to specify the field names for comparison.
+// If TRUE, the field name pairs in field_names[] are used for 
+//   comparison. If FALSE, each field in file1 is compared with a field of 
+//   the same name in file2.
+// Type: boolean
+//
+
+specify_field_names = FALSE;
+
+///////////// field_names /////////////////////////////
+//
+// List of fields for comparison.
+//
+// Type: struct
+//   typedef struct {
+//      string file1_field_name;
+//      string file2_field_name;
+//   }
+//
+// 1D array - variable length.
+//
+
+field_names = {
+  {
+    file1_field_name = "DBZ",
+    file2_field_name = "DBZ"
+  }
+  ,
+  {
+    file1_field_name = "VEL",
+    file2_field_name = "VEL"
+  }
+};
+
+//======================================================================
+//
+// READ CONSTRAINTS.
+//
+//======================================================================
+ 
+///////////// read_set_fixed_angle_limits /////////////
+//
+// Option to set fixed angle limits.
+// Only read sweeps within the specified fixed angle limits. Fixed 
+//   angles are elevation in PPI mode and azimuth in RHI mode.
+// Type: boolean
+//
+
+read_set_fixed_angle_limits = FALSE;
+
+///////////// read_lower_fixed_angle //////////////////
+//
+// Lower fixed angle limit - degrees.
+// Type: double
+//
+
+read_lower_fixed_angle = 0;
+
+///////////// read_upper_fixed_angle //////////////////
+//
+// Upper fixed angle limit - degrees.
+// Type: double
+//
+
+read_upper_fixed_angle = 90;
+
+///////////// read_set_sweep_num_limits ///////////////
+//
+// Option to set sweep number limits.
+// Only read sweeps within the specified sweep number limits.
+// Type: boolean
+//
+
+read_set_sweep_num_limits = FALSE;
+
+///////////// read_lower_sweep_num ////////////////////
+//
+// Lower sweep number limit.
+// Type: int
+//
+
+read_lower_sweep_num = 0;
+
+///////////// read_upper_sweep_num ////////////////////
+//
+// Upper sweep number limit.
+// Type: int
+//
+
+read_upper_sweep_num = 0;
+
+///////////// aggregate_sweep_files_on_read ///////////
+//
+// Option to aggregate sweep files into a volume on read.
+// If false, and the input data is in sweeps rather than volumes (e.g. 
+//   DORADE), the sweep files from a volume will be aggregated into a 
+//   volume.
+// Type: boolean
+//
+
+aggregate_sweep_files_on_read = FALSE;
+
+///////////// set_ngates_constant /////////////////////
+//
+// Option to force the number of gates to be constant.
+// If TRUE, the number of gates on all rays will be set to the maximum, 
+//   and gates added to shorter rays will be filled with missing values.
+// Type: boolean
+//
+
+set_ngates_constant = FALSE;
+
+///////////// set_max_range ///////////////////////////
+//
+// Option to set the max range for any ray.
+// Type: boolean
+//
+
+set_max_range = FALSE;
+
+///////////// max_range_km ////////////////////////////
+//
+// Specified maximim range - km.
+// Gates beyond this range are removed.
+// Type: double
+//
+
+max_range_km = 9999;
+
+///////////// keep_long_range_rays ////////////////////
+//
+// Option to keep long range rays.
+// Applies to NEXRAD data. If true, data from the non-Doppler long-range 
+//   sweeps will be kept. By default these are removed after their fields 
+//   are copied over to the short-range sweep.
+// Type: boolean
+//
+
+keep_long_range_rays = FALSE;
+
+///////////// remove_short_range_rays /////////////////
+//
+// Option to remove short range rays.
+// Applies to NEXRAD data. If true, data from the Doppler short-range 
+//   sweeps will be removed.
+// Type: boolean
+//
+
+remove_short_range_rays = FALSE;
+
+///////////// trim_surveillance_sweeps_to_360deg //////
+//
+// Option to trip surveillance sweeps so that they only cover 360 
+//   degrees.
+// Some sweeps will have rays which cover more than a 360-degree 
+//   rotation. Often these include antenna transitions. If this is set to 
+//   true, rays are trimmed off either end of the sweep to limit the 
+//   coverage to 360 degrees. The median elevation angle is computed and 
+//   the end ray which deviates from the median in elevation is trimmed 
+//   first.
+// Type: boolean
+//
+
+trim_surveillance_sweeps_to_360deg = FALSE;
+
+///////////// change_radar_latitude_sign //////////////
+//
+// Option to negate the latitude.
+// Mainly useful for RAPIC files. In RAPIC, latitude is always positive, 
+//   so mostly you need to set the latitiude to the negative value of 
+//   itself.
+// Type: boolean
+//
+
+change_radar_latitude_sign = FALSE;
+
+///////////// match_range_geometry ////////////////////
+//
+// Option to force the range geometry to match.
+// If true, the range geometry of the second file will be metched to 
+//   that of the first, before the comparison is made.
+// Type: boolean
+//
+
+match_range_geometry = FALSE;
+
+//======================================================================
+//
+// WHAT TO REPORT.
+//
+//======================================================================
+ 
+///////////// check_volume_number /////////////////////
+//
+// Check the volume number in the two data sets.
+// Type: boolean
+//
+
+check_volume_number = FALSE;
+
+///////////// check_sweeps ////////////////////////////
+//
+// Check the sweep details in the two data sets.
+// If false, we do not perform any checks on the sweep information.
+// Type: boolean
+//
+
+check_sweeps = TRUE;
+
+///////////// check_sweep_numbers /////////////////////
+//
+// Check the sweep numbers in the two data sets.
+// If false, we do not check that the sweep numbers match.
+// Type: boolean
+//
+
+check_sweep_numbers = TRUE;
+
+///////////// check_rays //////////////////////////////
+//
+// Check the ray details in the two data sets.
+// If false, we do not perform any checks on the ray information.
+// Type: boolean
+//
+
+check_rays = TRUE;
+
+///////////// check_fields ////////////////////////////
+//
+// Check the field details in the two data sets.
+// If false, we do not perform any checks on the field information.
+// Type: boolean
+//
+
+check_fields = TRUE;
+
+///////////// check_number_of_fields //////////////////
+//
+// Check the number of fields is the same in the two data sets.
+// Type: boolean
+//
+
+check_number_of_fields = TRUE;
+
+///////////// check_field_names ///////////////////////
+//
+// Check the field names in the two data sets.
+// If false, it is assumed that the fields are in the same order in the 
+//   2 files, and only the data, not the names, is checked.
+// Type: boolean
+//
+
+check_field_names = TRUE;
+
+///////////// check_field_units ///////////////////////
+//
+// Check the field units in the two data sets.
+// Type: boolean
+//
+
+check_field_units = TRUE;
+
+///////////// check_field_data ////////////////////////
+//
+// Check the field data values in the two data sets.
+// Type: boolean
+//
+
+check_field_data = TRUE;
+
+///////////// field_data_max_diff_for_match ///////////
+//
+// Maximum absolute difference to be considered a match.
+// This is the expected resolution of data values. Set to 0.0 to have 
+//   all differences shown. Differences less than this value are 
+//   considered perfect matches.
+// Type: double
+//
+
+field_data_max_diff_for_match = 0.01;
+
+///////////// report_all_field_data_diffs /////////////
+//
+// Print details at every gate with a difference.
+// If FALSE, only a summary will be printed.
+// Type: boolean
+//
+
+report_all_field_data_diffs = FALSE;
+
+///////////// min_percent_error_for_summary_report ////
+//
+// Min percentage of error gates to trigger data reporting.
+// This is the threshold for triggering a summary report. If the 
+//   fraction of gates with errors exceeds this percentage, the summary 
+//   will be reported and the program will return an error. If the 
+//   percentage of bad gates is less than this threshold, no error will be 
+//   reported.
+// Type: double
+//
+
+min_percent_error_for_summary_report = 0;
+
+///////////// time_max_diff_for_match /////////////////
+//
+// Maximum absolute difference in time (secs).
+// Max allowable time difference. Diffs greater than this will generate 
+//   an error.
+// Type: double
+//
+
+time_max_diff_for_match = 0.01;
+
+///////////// angle_max_diff_for_match ////////////////
+//
+// Maximum absolute difference in angle (deg).
+// Max allowable angle difference. Diffs greater than this will generate 
+//   an error.
+// Type: double
+//
+
+angle_max_diff_for_match = 0.01;
+
+///////////// nyquist_max_diff_for_match //////////////
+//
+// Maximum absolute difference in nyquist (m/s).
+// Max allowable nyquist velocity difference. Diffs greater than this 
+//   will generate an error.
+// Type: double
+//
+
+nyquist_max_diff_for_match = 0.1;
+
+//======================================================================
+//
+// WRITING THE OUTPUT.
+//
+// Where to write the results.
+//
+//======================================================================
+ 
+///////////// output_file_path ////////////////////////
+//
+// Full path for output file.
+// If this is set to stdout, then standard output is used. If this is 
+//   set to stderr, then standard error output is used.
+// Type: string
+//
+
+output_file_path = "stderr";
+
+///////////// append_to_output ////////////////////////
+//
+// Option to append to the output file.
+// If FALSE, the output file will be empty when opened.
+// Type: boolean
+//
+
+append_to_output = FALSE;
+

@@ -1,0 +1,681 @@
+<html>
+
+<head>
+<title>RADX</title>
+</head>
+
+<body>
+
+<!-- <BODY BGCOLOR="gray"> -->
+
+<H1><a name="top">Radx C++ Software Package for Radial Radar Data</a></H1>
+<P><HR><P>
+
+<p>
+The Radx C++ package was developed at NCAR to provide support for the new CfRadial radar data format, and to provide translation between common radar data formats.
+
+<p>
+The software is open source and freely available as a community resource. It is designed to be run on LINUX and MacOSX platforms, but should also run on Windows under Cygwin.
+
+<p>
+Radx comprises a C++ library, which may be used by developers, and a number of applications built on that library.
+     
+<p>
+You may download the softare and build it using the standard configure utility.
+
+
+<!-- ----------------- DOWNLOAD --------------   -->
+
+<hr>
+<P>
+<h2><a name = "download">Download</a></h2>
+
+<p>
+We recommend you download not only the Radx package, but also all of the files on the ftp site, so that you can build a suitable version of NetCDF to support Radx.
+
+<p>
+A tar file of the latest Radx library may be downloaded <a href = "http://www.eol.ucar.edu/software/radx">from here.</a>
+
+<p>
+The name of the tar file will be Radx-yyyymmdd.src.tgz, where yyyymmdd refers to the date on which the tar file was created.
+
+<p>
+After download, untar the file as follows:
+
+<p>
+<code><pre>
+        tar -xvfz Radx-*.tgz
+</pre></code>
+
+<hr>
+
+<!-- ----------------- BUILDING --------------   -->
+
+<P>
+<h2><a name = "building">Building</a></h2>
+
+<p>
+The Radx library may be built using a standard configure script.
+
+<p>
+A script <a href="./build_radx">build_radx</a> is provided to build all support libraries and applications, using configure. This will build the HDF5, NetCDF and ununits2 packages, as well as Radx.
+
+<p>
+Generally you would build the package using:
+
+<p><pre>    build_radx /usr/local</pre>
+
+<p>
+to install in the standard <code>/usr/local</code> location, or perhaps
+
+<p><pre>    build_radx /opt/local</pre>
+
+<p>
+to install in a non-standard location, for example <code>/opt/local</code>
+
+<p>
+The <a href="./build_netcdf">build_netcdf</a> script will build just the support libraries.
+
+<p>
+Please read the <a href="./README">README</a> file at the top level, for further information.
+
+<hr>
+
+<!-- <BODY BGCOLOR="gray"> -->
+
+<H1><A NAME="radx_apps">Radx C++ Applications</A></H1>
+<P><HR><P>
+
+<H2>Overview</H2><A NAME="formats">
+<P>
+
+<p>
+Radx applications are built using the <a href="#radx_lib">Radx</a> library, and other libraries as needed.
+
+<p>The following applications are available:
+<p>
+
+<TABLE BORDER ALIGN="CENTER" cellspacing=2 cellpadding=3>
+
+<TR>
+<TH ALIGN="CENTER" COLSPAN="4">Radx-based applications</TH>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TH>Application name</TH>
+<TH>Description</TH>
+<TH>Usage</TH>
+<TH>Default params file</TH>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_print">RadxPrint</a></TD>
+<TD>Print radial data</TD>
+<TD><a href = "./RadxPrint_usage.txt">RadxPrint_usage</a></TD>
+<TD><a href = "./RadxPrint_params.txt">RadxPrint_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_check">RadxCheck</a></TD>
+<TD>Check CfRadial files</TD>
+<TD><a href = "./RadxCheck_usage.txt">RadxCheck_usage</a></TD>
+<TD><a href = "./RadxCheck_params.txt">RadxCheck_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_convert">RadxConvert</a></TD>
+<TD>Convert between radial file formats</TD>
+<TD><a href = "./RadxConvert_usage.txt">RadxConvert_usage</a></TD>
+<TD><a href = "./RadxConvert_params.txt">RadxConvert_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_diff">RadxDiff</a></TD>
+<TD>Check 2 Radx-supported files for differences</TD>
+<TD><a href = "./RadxDiff_usage.txt">RadxDiff_usage</a></TD>
+<TD><a href = "./RadxDiff_params.txt">RadxDiff_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_evad">RadxEvad</a></TD>
+<TD>Compute Enhanced VAD</TD>
+<TD><a href = "./RadxEvad_usage.txt">RadxEvad_usage</a></TD>
+<TD><a href = "./RadxEvad_params.txt">RadxEvad_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_filter">RadxFilter</a></TD>
+<TD>Filter data fields in range</TD>
+<TD><a href = "./RadxFilter_usage.txt">RadxFilter_usage</a></TD>
+<TD><a href = "./RadxFilter_params.txt">RadxFilter_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_merge_fields">RadxMergeFields</a></TD>
+<TD>Merge fields from 2 sets of radial data files</TD>
+<TD><a href = "./RadxMergeFields_usage.txt">RadxMergeFields_usage</a></TD>
+<TD><a href = "./RadxMergeFields_params.txt">RadxMergeFields_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_2_grid">Radx2Grid</a></TD>
+<TD>Convert from irregular polar to a regular Cartesian or polar grid</TD>
+<TD><a href = "./Radx2Grid_usage.txt">Radx2Grid_usage</a></TD>
+<TD><a href = "./Radx2Grid_params.txt">Radx2Grid_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_cov_2_mom">RadxCov2Mom</a></TD>
+<TD>Compute moments from covariances</TD>
+<TD><a href = "./RadxCov2Mom_usage.txt">RadxCov2Mom_usage</a></TD>
+<TD><a href = "./RadxCov2Mom_params.txt">RadxCov2Mom_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#radx_part_rain">RadxPartRain</a></TD>
+<TD>Derive NCAR particle-ID and precipitation rate from dual-polarization fields</TD>
+<TD><a href = "./RadxPartRain_usage.txt">RadxPartRain_usage</a></TD>
+<TD><a href = "./RadxPartRain_params.txt">RadxPartRain_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#fix_cfradial_paths">FixCfradialPaths</a></TD>
+<TD>Fix path names for CfRadial files, to conform to the expected directory and file naming conventions</TD>
+<TD><a href = "./FixCfradialPaths_usage.txt">FixCfradialPaths_usage</a></TD>
+<TD><a href = "./FixCfradialPaths_params.txt">FixCfradialPaths_params</a></TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "#fix_radx_pointing">FixRadxPointing</a></TD>
+<TD>Correct pointing errors in radial data</TD>
+<TD><a href = "./FixRadxPointing_usage.txt">FixRadxPointing_usage</a></TD>
+<TD><a href = "./FixRadxPointing_params.txt">FixCfradialPaths_params</a></TD>
+</TR>
+
+</TABLE>
+
+<p>
+<p>
+
+<p>Details are given below on:
+<p>
+
+<UL>
+<LI><a href = "#running">how to run</a> the Radx applications
+<LI><a href = "#download">how to download</a> the Radx applications
+<LI><a href = "#building">how to build</a> the Radx applications
+</UL>
+
+<hr>
+
+<!-- ----------------- RUNNING THE APPLICATIONS --------------   -->
+
+<P>
+<h3><a name = "running">Running the Radx applications</a></h3>
+
+<p>
+There are two main features which are important to the user:
+<p>
+
+<UL>
+<LI>the <a href = "#args">command line arguments</a>
+<LI>the <a href = "#params">run-time parameter file</a>
+</UL>
+
+<P>
+<h4><a name = "args">Command line arguments</a></h4>
+
+<p>
+You can obtain the command line usage of an application by invoking the -h or -help command line argument. For example:
+<p>
+
+<p><code><pre>
+    RadxConvert -h
+</code></pre>
+
+yields the <a href = "./RadxConvert_usage.txt">usage</a>
+
+<P>
+<h4><a name = "params">Run-time parameter file</a></h4>
+
+<p>
+The Radx applications use the NCAR <a href="../tdrp">Table-Driven Run-time Parameter (TDRP)</a> package to handle parameters.
+
+<p>
+To create a default (or template) parameter file, use the -print_params command line option.
+
+<p>For example:
+
+<p><code><pre>
+    RadxConvert -print_params > RadxConvert.params
+</code></pre>
+
+creates the following <a href="RadxConvert_params.txt">file contents</a>.
+
+<p>
+These parameter files are self-documenting, using comments inserted by the author of the code.
+
+<p>The user edits the default parameter file to control the application to produce the desired behavior.
+
+<p>
+To run the application, the user invokes the -params command line option.
+
+<p>For example:
+
+<p><code><pre>
+    RadxConvert -params RadxConvert.params -start "2009 10 08 12 00 00" -end "2009 10 08 13 00 00"
+</code></pre>
+
+will convert all of the files between 12 UTC and 13 UTC on 2009/10/08, using the parametes specified in the parameter file.
+
+<hr>
+
+<!-- ----------------- RADX PRINT --------------   -->
+
+<P>
+<h3><a name = "radx_print">RadxPrint</a></h3>
+
+<p>
+RadxPrint allows you to print data from any of the files supported by <a href="#radx_lib">Radx</a>.
+
+<p>
+By default, the contents are printed in a generic form, which does not reflect the way the data is stored in the file format.
+
+<p>
+By using the -native option, you can see the details of how data is stored in DORADE or UF files.
+
+<p>
+Use ncdump to see the details of how data is stored in CfRadial or Foray netCDF files.
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- RADX CHECK --------------   -->
+
+<P>
+<h3><a name = "radx_check">RadxCheck</a></h3>
+
+<p>
+RadxCheck performs some basic checks on a CfRadial file, to ensure that it conforms with the format specification.
+
+<p>
+Use ncdump to see the details of how data is stored in CfRadial files.
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- RADX CONVERT --------------   -->
+
+<P>
+<h3><a name = "radx_convert">RadxConvert</a></h3>
+
+<p>
+RadxConvert allows you to convert data stored in one format to a different format.
+
+<p>
+RadxConvert can read/write the following formats:
+<p>
+
+<TABLE BORDER ALIGN="CENTER" cellspacing=2 cellpadding=3>
+
+<TR>
+<TH ALIGN="CENTER" COLSPAN="4">Radx file format support</TH>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TH>Format</TH>
+<TH>Read access</TH>
+<TH>Write access</TH>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "index.html#cfradial">CfRadial</a> - NCAR/EOL/UNIDATA</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "index.html#dorade">DORADE</a> - NCAR/EOL</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "index.html#uf">UF</a> - Universal Format</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.eol.ucar.edu/Members/dennisf/foray">Foray-1 netCDF</a> - NCAR/EOL</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://radar.arm.gov/ARM_Radars/Home.html">DOE ARM netcdf</a> - precedes CfRadial</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.ral.ucar.edu/projects/titan/docs/MDV_format_ICD.pdf">MDV radial</a> - NCAR/RAL</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.roc.noaa.gov/WSR88D/PublicDocs/Publications/120214.pdf">NEXRAD msg31</a> level 2 archive</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.roc.noaa.gov/WSR88D/PublicDocs/Publications/120214.pdf">NEXRAD msg1</a> level 2 archive</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "ftp://ftp.sigmet.com/outgoing/manuals">SIGMET</a> - raw format (Vaisala)</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.bom.gov.au/social/2012/04/weather-radar/">RAPIC</a> - BOM Australia</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.aoml.noaa.gov/hrd/data2.html">HRD</a> - HRD NOAA</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD>LEOSPHERE LIDAR, ASCII format</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD>EEC - now supports CfRadial</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+</TR>
+
+</TABLE>
+
+<p>
+
+<p>
+
+<p><a href = "#top">Back to top</a>
+
+<!-- ---------------------------------------   -->
+
+<hr>
+
+<!-- ----------------- RADX DIFF -------------- -->
+
+<P>
+<h3><a name = "radx_diff">RadxDiff</a></h3>
+
+<p>
+RadxDiff performs a logical difference between 2 files supported by Radx. You can set the levels of the checks both on the command line and in the parameter file. This application is intended to check that the information content of the files is consistent, rather than the fact that everything is exactly equal.
+
+<p>
+To see the exact differences between two files, run:
+
+<p><code><pre>   RadxPrint -rays -data -f filename1 > /tmp/filename1.txt</code></pre>
+<p><code><pre>   RadxPrint -rays -data -f filename2 > /tmp/filename2.txt</code></pre>
+
+<p>The .txt ASCII files will contain all of the information in the Radx files. Then use the normal unix diff utilities to check for differences between the two. For example:
+
+<p><code><pre>   tkdiff filename1.txt filename2.txt</code></pre>
+
+<p>Since the output from RadxPrint can be rather long, this procedure might take too much memory. In order to only examine the top of each file, use the following:
+
+<p><code><pre>   RadxPrint -rays -data -f filename1 | head -n 10000 > /tmp/filename1.txt</code></pre>
+<p><code><pre>   RadxPrint -rays -data -f filename2 | head -n 10000 > /tmp/filename2.txt</code></pre>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- RADX EVAD -------------- -->
+
+<P>
+<h3><a name = "radx_evad">RadxEvad</a></h3>
+
+<p>
+RadxEvad RadxEvad reads in Doppler data from a polar radar file, computes volumetric VAD (VVP) winds and writes them out to NetCDF.
+
+<p>The implementation in Mdv2Vad is based on the paper 'An Improved 
+Version of the Extended Velocity-Azimuth Display Analysis of 
+Single-Doppler Radar Data' by Thomas Metejka and Ramesh C. 
+Srivastava, Journal of Atmospheric and Oceanic Technology, Vol 8, No 
+4, August 1991. The code is designed to match the terminology in the 
+paper as fas as is posible. Please refer to the paper for a detailed 
+explanation of the method.
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- RADX MERGE FIELDS --------------   -->
+
+<P>
+<h3><a name = "radx_merge_fields">RadxMergeFields</a></h3>
+
+<p>
+RadxMergeFields allows you to merge fields from a primary set of radial files with fields from a secondary set of files.
+
+<p>
+The ray geometry is determined from the primary data set. If the secondary data set has a different geometry, the data will be mapped onto the geometry of the primary data set.
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- RADX 2 GRID --------------   -->
+
+<P>
+<h3><a name = "radx_2_grid">Radx2Grid</a></h3>
+
+<p>
+Radx2Grid performs coordinate transformations from the polar grid on which radar data is collected to a regular grid.
+
+<p>
+The following regular grids are supported:
+
+<UL>
+<LI>Cartesian grid in (Z,Y,X)
+<LI>PPI grid in (EL, Y, Z) - performs Cartesian transformation on each elevation angle separately
+<LI>Polar grid, regular in (EL, AZ, RANGE)
+</UL>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- RADX COV 2 MOM --------------   -->
+
+<P>
+<h3><a name = "radx_cov_2_mom">RadxCov2Mom</a></h3>
+
+<p>
+RadxCov2Mom computes radar moments from raw covariances. The advantage of storing the covariances is that later on you can go back and re-compute the moments with updated calibration values and improved algorithms.
+
+<p>
+For this to work, during data acquisition you need to save the covariance fields for the dual-polarization mode you are working in. These details are provided in the default parameter file.
+
+<p>
+You will also need a calibration file, in XML - see this <a href = "./spol_cal.xml.txt">example</a>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- RADX PART RAIN --------------   -->
+
+<P>
+<h3><a name = "radx_part_rain">RadxPartRain</a></h3>
+
+<p>
+RadxPartRain computes the NCAR Particle Identification, and the NCAR precipition estimates, from dual polarization data.
+
+<p>
+These algorithms need to be tuned for each of the various wavelengths. See the following examples:
+
+<UL>
+<LI><a href = "./pid_thresholds.sband.alt.txt">PID thresholds for S-BAND in fast-alternating (FHV) mode</a>
+<LI><a href = "./pid_thresholds.cband.shv.txt">PID thresholds for C-BAND in simultaneous-transmit (SHV) mode</a>
+</UL>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- <BODY BGCOLOR="gray"> -->
+
+<H1><A NAME="radx_lib">Radx C++ library</A></H1>
+<P><HR><P>
+
+<H2>Overview</H2><A NAME="formats">
+<P>
+
+<p>
+The Radx C++ library provides an API for handling ray-by-ray radial data from radars and lidars. The basic API is designed to be file-format independent. For example, the RadxVol class is a general purpose class for data volumes, irrespective of format.
+
+<p>
+Radx provides adapters to read and write data files, as follows:
+<p>
+
+<TABLE BORDER ALIGN="CENTER" cellspacing=2 cellpadding=3>
+
+<TR>
+<TH ALIGN="CENTER" COLSPAN="4">Radx file format support</TH>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TH>Format</TH>
+<TH>Read access</TH>
+<TH>Write access</TH>
+<TH>Radx lib Adapter class</TH>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "index.html#cfradial">CfRadial</a> - NCAR/EOL/UNIDATA</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>NcfRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "index.html#dorade">DORADE</a> - NCAR/EOL</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>DoradeRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "index.html#uf">UF</a> - Universal Format</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>UfRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.eol.ucar.edu/Members/dennisf/foray">Foray-1 netCDF</a> - NCAR/EOL</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>ForayNcRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://radar.arm.gov/ARM_Radars/Home.html">DOE ARM netcdf</a></TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>DoeNcRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.roc.noaa.gov/WSR88D/PublicDocs/Publications/120214.pdf">NEXRAD msg1</a> level 2 archive</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>NexradNcRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.roc.noaa.gov/WSR88D/PublicDocs/Publications/120214.pdf">NEXRAD msg31</a> level 2 archive</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>NexradNcRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "ftp://ftp.sigmet.com/outgoing/manuals">SIGMET</a> - raw format (Vaisala)</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>SigmetNcRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.bom.gov.au/social/2012/04/weather-radar/">RAPIC</a> - BOM Australia</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>RapicRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a href = "http://www.aoml.noaa.gov/hrd/data2.html">HRD</a> - HRD/NOAA</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>HrdRadxFile</TD>
+</TR>
+
+<TR ALIGN="LEFT" VALIGN="TOP">
+<TD><a>LEOSPHERE LIDAR, ASCII format</a></TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>LeoRadxFile</TD>
+</TR>
+
+</TABLE>
+
+<p>
+<p>
+The Foray-1 netCDF file format has been replaced by CfRadial. Therefore, write access is not provided for this format.
+
+<p>
+
+<!-- ---------------------------------------   -->
+
+<hr>
+
+<!-- ----------------- DOCUMENTATION --------------   -->
+
+<P>
+<h3><a name = "documentation">Documentation</a></h3>
+
+<p>
+The Radx library is well commented, both in the header files and implementation files, to assist the programmer in its use.
+
+<p>
+<a href="http://en.wikipedia.org/wiki/Doxygen/">Doxygen</a> documentation is provided <a href="doxygen/radx/html">here</a>.
+
+<hr>
+
+Author:
+<cite>Mike Dixon</cite><br>
+EOL/RAL, NCAR, P.O.Box 3000, Boulder, CO, 80307-3000<br>
+July 2010
+
+</body>
+</html>
+

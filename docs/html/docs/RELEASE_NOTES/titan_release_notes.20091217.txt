@@ -1,0 +1,63 @@
+TITAN RELEASE NOTES - 2009/12/17
+================================
+
+1. Added XML output option to SpdbQuery
+---------------------------------------
+
+SpdbQuery now has the -as_xml command line option.
+
+If specified, the output is in XML format.
+
+2. Advanced radar support added
+-------------------------------
+
+The following lib and apps were added for advanced radar support
+including time series and dual polarization:
+
+  libs/radar
+  apps/radar
+
+Note: the fftw3 package is required for these.
+
+The following are in apps/radar/src:
+
+  AltCpCompute: CP method of ZDR calibration
+  ChillCal2Xml: convert CHILL calibration file to XML
+  ChillSdb2Dsr: read CHILL SDB server and write to DSR
+  ChillSdbServer: read DSR, serve out as CHILL SDB
+  ChillTsFile2Fmq: read CHILL time series file, write to time series FMQ
+  ChillTsTcp2Fmq: read CHILL time series server, write to time series FMQ
+  CP2Udp2Fmq: read CP2 UDP time series, write to time series FMQ
+  Dsr2CP2Mom: read DSR, write out as CP2 UDP moments
+  Dsr2Rapic: read DSR, write out as BOM RAPIC
+  DsrGrabber: read DSR, print summary statistics
+  DualDopplerLobes: create CIDD map for Dual Doppler
+  IntfRemove: remove interference using power only
+  Iq2Dsr: read time-series FMQ, compute moments, write to DSR
+  Mdv2Vad: read MDV polar file, compute VAD, write to SPDB
+  MdvPartRain: read MDV dual-pol polar file, compute PID and rain rate
+  MdvRadarShear: read MDV polar file, compute radial and azimuthal shear
+  PartRain: read dual pol DSR, compute PID and rain rate, write to DSR
+  RadarCal: compute radar calibration
+  RadarConst: compute radar constant
+  RadarMdvCompare: compare overlap regions, compute DBZ bias
+  RapMap2Chill: convert CIDD map to CHILL map format
+  SpectraPlot: display spectra from time series (in SPDB)
+  SpectraPrint: read time series data, write to SPDB
+  SunCal: compute calibration from sun scan
+  TsCalAuto: drive siggen, compute radar calibration
+  TsFile2Fmq: read time series file, write to time series FMQ
+  TsFmq2Tcp: read time series FMQ, serve out via TCP
+  TsPrint: read time series FMQ or files, print stats
+  TsSmartSave: read time series FMQ, save out to files
+  TsTcp2File: read time series TCP, save to file
+  TsTcp2Fmq: read time series TCP, write to FMQ
+  UfRadarPrint: print UF radar format file
+  VertCompute: compute ZDR bias from vertical pointing scanning
+
+3. Jadeite JAVA display
+-----------------------
+
+The prototype Java-based Jadeite display was added. This will
+eventually replace CIDD.
+

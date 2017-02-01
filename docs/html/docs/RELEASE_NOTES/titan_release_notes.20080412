@@ -1,0 +1,79 @@
+TITAN RELEASE NOTES - 2008/04/12
+================================
+
+1. Added compile arguments for large file support.
+--------------------------------------------------
+
+If you are using a 32-bit version of LINUX, you will use the
+default value for HOST_OS:
+
+  setev HOST_OS LINUX
+
+In make_include/rap_make.LINUX, the following compile flags have
+been added for LFS - large file support:
+
+  -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+
+This supports file sizes of above 2GB.
+
+2. CIDD Makefile
+----------------
+
+Depending on the OS you are using, CIDD may not link because of
+library dependencies.
+
+In the CIDD Makefile, you will see the following:
+
+# Use following line instead, if -lpng -ltiff -ljpeg -lgif -lz not available
+#   -lshapelib -lImlib2 -lpthread -lguidexv -lxview -lolgx -lX11 -lXext -lm
+
+If you are having trouble, delete the line above these comments, as well
+as the first line of the comments. Then, uncomment the second line and
+try linking with that.
+
+3. Requires ImLib2.
+-------------------
+
+CIDD under this distribution requires ImLib2.
+
+CIDD_titan is not dependent on ImLib2. This application can be used
+instead of CIDD for many purposes. However, the image generation from
+CIDD_titan is less capable than from CIDD.
+
+4. Support for new NEXRAD formats
+---------------------------------
+
+See:
+
+  apps/ingest/src/superResNexradII2Dsr
+  apps/ingest/src/superResNexradLdmUnzip
+
+for applications to support the latest NEXRAD format changes
+for so-called super-resolution.
+
+5. Rview/TimeHist
+-----------------
+
+The time scale GUI for TimeHist has been updated.
+
+(a) There is now a '1HR' buttton which moves the time back
+and forward by 1 hour.
+
+(b) If no TITAN data is available, the TimeHist TIME button moves
+the time back and forward by scan_delta_t, in secs. See the Rview
+parameter file for scan_delta_t.
+
+6. apps/radar
+-------------
+
+There are a number of new applications in apps/radar. These are under
+development, but may be useful.
+
+  ChillSdbServer: serve out CHILL SDB moments from Dsr queue
+  DsrGrabber: reads Dsr, writes out ASCII summary
+  RadarConst: computes radar constant
+  RadarMdvCompare: compare overlap regions between radars, to compare
+                   reflectivity calibration
+  RapMap2Chill: convert TITAN maps to CHILL maps
+
+  

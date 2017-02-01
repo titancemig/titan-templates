@@ -1,0 +1,127 @@
+#! /bin/bash
+#
+# Building RADX and required libraries
+# ====================================
+#
+# Downloading:
+# ------------
+#
+# Download into a single directory all of the files in:
+#
+#    ftp.rap.ucar.edu/pub/titan/radx
+#
+# By default the libraries and applications will be installed in:
+#
+#   /usr/local/include
+#   /usr/local/lib
+#   /usr/local/bin
+#
+# You can change the install location by specifying it as
+# a single argument to this script.
+#
+# For example:
+#
+#   build_radx /tmp/radx_build
+#
+# will install in:
+#
+#   /tmp/radx_build/include
+#   /tmp/radx_build/lib
+#   /tmp/radx_build/bin
+#
+
+#--------------------------------------------------------------------
+# usage function
+#
+
+function usage() {
+    echo
+    echo "Usage: build_radx [ -h ] [ prefix ]"
+    echo
+    echo "  -h: produce this usage list"
+    echo "  optionally set the prefix"
+    echo
+}
+
+# set the path
+
+export PATH=.:/bin:/usr/bin:/sbin:/usr/sbin:/usr/bin/X11:/usr/local/bin:/usr/local/sbin
+
+# set the install prefix
+
+prefix=/usr/local
+
+if [ $# -gt 0 ]
+then
+  if [ "$1" == -h -o "$2" == -h ] 
+  then
+    usage
+    exit 0
+  fi
+  prefix=$1
+fi
+
+echo "Installing in prefix: $prefix"
+
+#  Building HDF5
+#  -------------
+
+tar xvfz hdf5-*.tar.gz
+cd hdf5-*
+./configure --prefix=${prefix}
+make -j 4
+make install
+cd ..
+
+# Building udunits2
+# -----------------
+
+tar xvfz udunits-*.tar.gz
+cd udunits-*
+./configure --prefix=${prefix}
+make -j 4
+make install
+cd ..
+
+# Building netcdf
+# ---------------
+
+tar xvfz netcdf-*.tar.gz
+cd netcdf-*
+
+FC=gfortran
+export FC
+
+./configure --enable-netcdf-4 --with-hdf5=${prefix} --prefix=${prefix} --disable-dap
+make -j 4
+make install
+cd ..
+
+# Building Radx
+# -------------
+
+tar xvfz Radx-????????.src.tgz
+cd Radx-????????
+./configure --with-hdf5=${prefix} --with-netcdf=${prefix} --prefix=${prefix}
+make -j 4
+make install
+  
+# Checking the build
+# ------------------
+
+echo
+echo
+echo
+echo "============= Checking libs for RADX - ============="
+./distribs/radx/check_libs -p $prefix
+echo "===================================================="
+echo
+echo
+echo
+echo "============= checking apps for RADX ============="
+./distribs/radx/check_apps -p $prefix
+echo "=================================================="
+
+cd ..
+
+

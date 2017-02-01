@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>RADIAL RADAR DATA FORMATS</title>
+</head>
+
+<BODY BGCOLOR="white">
+
+<H1><A NAME="top">Radial Radar/Lidar Data Formats at NCAR</A></H1>
+<P>
+<HR>
+<P>
+
+<!-- ----------------- Top of page --------------   -->
+
+<H2>Overview</H2>
+<P>
+<P>At NCAR, the following formats in use specifically for radial radar and lidar data:</P>
+<UL>
+<LI><a href = "#cfradial">CfRadial:</a> CF-compliant netCDF (new)
+<LI><a href = "#dorade">Dorade:</a> Doppler Radar Data Exchange Format
+<LI><a href = "#uf">UF:</a>Universal Format
+<LI><a href = "#foray">FORAY netCDF:</a> mainly used for TIMREX field experiment
+<LI><a href = "#iwrf">IWRF</a> used for time series data
+</UL>
+
+<P>
+<P>Software has been developed at NCAR to assist with manipulation of data in these formats:</P>
+<UL>
+<LI><a href = "radx.html#radx_lib">Radx library </a> - handles all above file types (C++)
+<LI><a href = "radx.html#radx_apps">Radx applications </a> - various operations on CfRadial (C++)
+<LI><a href = "http://www.eol.ucar.edu/Members/dennisf/foray">FORAY C++ library</a> - handles FORAY netCDF and DORADE
+<LI><a href = "cidd_support.html">CIDD support</a> - servers that provide radial data directly to CIDD
+</UL>
+
+<P>
+<P>In addition, FORTRAN and MatLab utilities for dealing with CfRadial format files are currently under development at NCAR.</P>
+<P>
+
+<p><a href = "../">Back to TITAN docs</a>
+
+<!-- ----------------- Example data --------------   -->
+
+<HR>
+<H2>Example data sets</H2>
+
+<p>
+<P>Example data sets are available as follows:</P>
+<UL>
+<LI><a href = "../../example_data/cfradial_netcdf3">CfRadial in netCDF classic format</a>
+<LI><a href = "../../example_data/cfradial_netcdf4">CfRadial in netCDF4 format</a>
+<LI><a href = "../../example_data/dorade">DORADE format</a>
+<LI><a href = "../../example_data/uf">Universal format</a>
+<LI><a href = "../../example_data/nexrad">NEXRAD msg31 format</a>
+<LI><a href = "../../example_data/foray">FORAY format</a>
+</UL>
+
+
+<p>
+<P>Images of selected contents of the data files are available as follows:</P>
+<UL>
+<LI><a href = "../../example_data/images/dbz_ppi_0.5.png">DBZ for 0.5 degree sweep</a>
+<LI><a href = "../../example_data/images/dbz_ppi_2.6.png">DBZ for 2.6 degree sweep</a>
+<LI><a href = "../../example_data/images/dbz_ppi_9.1.png">DBZ for 9.1 degree sweep</a>
+<LI><a href = "../../example_data/images/vel_ppi_0.5.png">VEL for 0.5 degree sweep</a>
+<LI><a href = "../../example_data/images/vel_ppi_2.6.png">VEL for 2.6 degree sweep</a>
+<LI><a href = "../../example_data/images/vel_ppi_9.1.png">VEL for 9.1 degree sweep</a>
+</UL>
+
+<P>
+
+<hr>
+
+<!-- ----------------- CF RADIAL --------------   -->
+
+<P>
+<h3><a name = "cfradial">CF/RADIAL FORMAT</a></h3>
+
+<p>
+<a href="cfradial.html">Cf/Radial</a> is the most recent format to be developed for handling radial data from modern radar and lidar platforms. Cf/Radial is a collaborative effort between EOL, RAL and UNIDATA.
+
+<p>
+<a href="cfradial.html">Cf/Radial</a> is a <a href = "http://cf-pcmdi.llnl.gov/documents/cf-conventions">CF-compliant</a> <a href="http://www.unidata.ucar.edu/software/netcdf/">netCDF</a> format. Because of its CF-compliance, CfRadial will allow researchers familiar with CF to read the data into a wide variety of analysis tools, models etc.
+
+<p>
+The CfRadial documentation</a> is available in PDF
+
+<UL>
+<LI><a href = "CfRadialDoc.v1.3.20130701.pdf">Version 1.3 - 2013/07/01</a>
+<LI><a href = "CfRadialDoc.v1.2.20110607.pdf">Version 1.2 - 2011/06/07</a>
+<LI><a href = "CfRadialDoc.v1.1.20110201.pdf">Version 1.1 - 2011/02/01</a>
+</UL>
+
+<p>
+See the <a href="cfradial.html">Cf/Radial web page</a> for full details.
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ---------------------------------------   -->
+<!-- ----------------- DORADE --------------   -->
+
+<P>
+<h3><a name = "dorade">DORADE FORMAT</a></h3>
+
+<p>
+DORADE was developed in the 1990's, to handle the more complex nature of Doppler radars, especially airborne platforms. DORADE is a binary format composed of distinct header and data blocks, making it extensible.
+
+<p>
+Many NCAR field projects from 1990 to 2010 stored the raw radial radar data, as well as derived products, in DORADE format.
+
+<p>
+The NCAR/EOL soloii display is a primary tool for displaying, editing and manipulating DORADE files.
+
+<p>
+From 2010, DORADE files will gradually be replaced with the new CfRadial format.
+
+<p>
+The <a href="DoradeDoc.pdf">DORADE documentation</a> was updated in 2010.
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- -----------------------------------   -->
+<!-- ----------------- UF --------------   -->
+
+<P>
+<h3><a name = "uf">UNIVERSAL FORMAT</a></h3>
+
+<p>
+Commonly known as UF, the Universal Format is formally known as the Common Doppler Radar Exchange Format. UF was documented by S.L Barnes in 1980 in the Bulletin of the Americal Meterological Society (BAMS), Vol 61, 1401 - 1404.
+
+<p>
+UF was primarily designed for access via FORTRAN. A FORTRAN binary block holds the data for each ray (or beam). UF is composed exclusively from ASCII characters and 16-bit integer words. Floating point values are computed by applying scale factors and offsets to the integer values. 
+
+<p>
+UF has some significant limitations. Field names are limited to 2 characters. For example, reflectivity is often referred to as ZH, or DZ, and radial velocity as VR, because the 2-character limitation prevents use of longer names such as DBZ or VEL. Also, the headers are limited in length, so that the metadata associated with more sophisticated radars cannot be accurately represented.
+
+<p>
+Neverthless, UF is still popular with many researchers, and much analysis code has been written for UF data.
+
+<p>
+The <a href="UfDoc.txt">UF documentation</a> is based on the 1980 BAMS article.
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- --------------------------------------   -->
+<!-- ----------------- FORAY --------------   -->
+
+<P>
+<h3><a name = "foray">FORAY netCDF FORMAT</a></h3>
+
+<p>
+The <a href="http://www.eol.ucar.edu/Members/dennisf/foray">FORAY Project</a> developed a radar data exchange format based on the <a href="http://www.unidata.ucar.edu/software/netcdf/">Unidata netCDF</a> scientific data format.
+
+<p>
+FORAY netCDF is based on NetCdf version 3, i.e. it does not support data compression.
+
+<p>
+The FORAY netCDF sweep file format was the primary format used for the <a href="http://www.eol.ucar.edu/deployment/field-deployments/field-projects/timrex">TIMREX</a> field experiment in Taiwan. TIMREX also stored the radial data in DORADE format.
+
+<p>
+An <a href="foraync_dump_example.txt">example ncdump</a> from a FORAY netCDF file is the best way to understand the format.
+
+<p>
+The FORAY project has now ended. TIMREX will be the only NCAR field project which will use FORAY netCDF files. All subsequent projects will use CfRadial and DORADE.
+
+<p><a href = "#top">Back to top</a>
+<p><a href = "../">Back to TITAN docs</a>
+
+<hr>
+
+<!-- --------------------------------------   -->
+<!-- -----------------  IWRF  --------------   -->
+
+<P>
+<h3><a name = "iwrf">IWRF time series format</a></h3>
+
+<p>
+The IWRF time format was developed to provide a platform-independend data exchange format for time series data.
+
+<p>
+The <a href="IWRF_ts_format.pdf">IWRF documentation</a> is available in PDF.
+
+<p><a href = "#top">Back to top</a>
+<p><a href = "../">Back to TITAN docs</a>
+
+<hr>
+
+<!-- ---------------------------------------   -->
+
+Author:
+<cite>Mike Dixon</cite><br>
+EOL/RAL, NCAR, P.O.Box 3000, Boulder, CO, 80307-3000<br>
+July 2010
+
+</body>
+</html>
+

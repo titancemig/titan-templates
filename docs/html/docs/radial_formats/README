@@ -1,0 +1,218 @@
+UCAR/EOL/RAL Radx software for radial data for radar/lidar
+==========================================================
+
+Web documentation
+-----------------
+
+For full details see:
+
+  http://www.ral.ucar.edu/projects/titan/docs/radial_formats/
+
+LINUX setup
+-----------
+
+Radx is primarily intended to run on LINUX and OSX, though it may
+work on Windows using mingw.
+
+Most good, up-to date LINUX distributions should work.
+
+Recommended OSs are:
+
+  Ubuntu
+  Debian
+  Fedora
+  Scientific Linux
+  Mac OSX
+
+Required packages for compiling:
+
+  gcc 4.3+ compiler
+  g++ 4.3+ compiler
+  gfortran compiler
+
+  tcsh shell
+  perl shell
+
+  fftw3-devel development (for radar moments)
+  bzip2-devel (for NEXRAD decompression)
+  zlib-devel
+  expat-devel (for udunits)
+
+You will also need to download and build netcdf and
+hdf5 libraries - see below.
+
+Downloading
+-----------
+
+Download all of the files from:
+
+  ftp.rap.ucar.edu/pub/titan/radx
+
+These include tar files for Radx, HDF5, NetCDF and udunits2.
+
+The Radx tar file will be named:
+
+  Radx-yyyymmdd.src.tgz
+
+where yyyymmdd is the date of the distribution.
+
+The other tar files will be:
+
+  hdf5-1.8.5-patch1.tar.gz
+  netcdf-4.1.1.tar.gz
+  udunits-2.0.1.tar.gz
+
+You will also download this README file, and the build_radx and
+build_netcdf scripts.
+
+Set the build scripts to executable after the download.
+
+Directory locations
+-------------------
+
+Generally you will put these tar files in
+
+  /usr/local/src
+
+and build from there. However, any suitable directory can be used.
+
+Building hdf5, netcdf and udunits2
+==================================
+
+You can use the build_netcdf script to build the support libraries:
+  HDF5, NetCDF and udunits2
+
+Make sure build_netcdf is executable:
+
+  chmod +x build_netcdf
+
+Be default, you will install into /usr/local.
+
+The installed files will then be in:
+
+  /usr/local/include
+  /use/local/lib
+  /usr/local/bin
+
+You will need to be the root user perform this installation.
+
+You can change the install location by specifying it as
+a single argument to this script.
+
+For example:
+
+  build_netcdf /tmp/netcdf_build
+
+will install in:
+
+  /tmp/netcdf_build/include
+  /tmp/netcdf_build/lib
+  /tmp/netcdf_build/bin
+
+Building libraries individually
+===============================
+
+Alternatively you can build the libraries individually. Follow the
+directions below.
+
+Building HDF5
+-------------
+
+  cd /usr/local/src
+  tar xvfz hdf5-1.8.5-patch1.tar.gz
+
+  cd hdf5-1.8.5-patch1
+  ./configure --prefix=/usr/local
+
+  make -j 4
+  make install
+
+Building udunits2
+-----------------
+
+  cd /usr/local/src
+  tar xvfz udunits-2.0.1.tar.gz
+
+  cd udunits-2.1.5
+  ./configure --prefix=/usr/local
+
+  make -j 4
+  make install
+
+Building netcdf
+---------------
+
+If you are using the bash shell:
+
+  FC=gfortran
+  export FC
+
+If you are using the csh shell:
+
+  setenv FC gfortran
+
+  cd /usr/local/src
+  tar xvfz netcdf-4.1.1.tar.gz
+  cd netcdf-4.1.1
+
+  ./configure --enable-netcdf-4 --with-hdf5=/usr/local --prefix=/usr/local --disable-dap
+
+  make -j 4
+  make install
+
+Building the Radx distribution
+------------------------------
+
+Move the tar file to your chosen directory.
+
+  cd /usr/local/src
+  tar xvfz Radx-*.src.tgz
+
+  cd Radx-yyyymmdd
+  ./configure --prefix=/usr/local
+
+  make -j 4
+  make install
+
+If hdf5 or netcdf libraries are installed in a non-standard location,
+you can specify this on the configure command line.
+
+For example:
+
+  configure --prefix=/tmp/radx --with-hdf5=/opt/local/hdf5 --with-netcdf=/opt/local/netcdf4
+
+will find the hdf 5 library in
+
+  /opt/local/hdf5
+
+and the netcdf library in
+
+  /opt/local/netcdf4
+
+and will build and install radx in
+
+  /tmp/radx/include
+  /tmp/radx/lib
+  /tmp/radx/bin
+
+Handling build errors
+---------------------
+
+If the build does not complete successfully, you will need to
+track down the errors. It is the first errors in the build that
+are the most important.
+
+If you get errors, run the make as follows:
+
+  make |& less
+
+and scroll for errors, or
+
+  make >& make.log
+
+and then inspect the make.log file.
+
+
+
+
+

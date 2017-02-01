@@ -1,0 +1,1104 @@
+netcdf ncswp_SPOLRVP8_20080605_234748.000_v054_s003_002.6_SUR_ {
+dimensions:
+	Time = UNLIMITED ; // (482 currently)
+	maxCells = 996 ;
+	numSystems = 1 ;
+	fields = 20 ;
+	short_string = 32 ;
+	long_string = 80 ;
+variables:
+	int volume_start_time ;
+		volume_start_time:long_name = "Unix Date/Time value for volume start time" ;
+		volume_start_time:units = "seconds since 1970-01-01 00:00 UTC" ;
+	int base_time ;
+		base_time:long_name = "Unix Date/Time value for first record" ;
+		base_time:units = "seconds since 1970-01-01 00:00 UTC" ;
+	char field_names(fields, short_string) ;
+	float Fixed_Angle ;
+		Fixed_Angle:long_name = "Targeted fixed angle for this scan" ;
+		Fixed_Angle:units = "degrees" ;
+		Fixed_Angle:_FillValue = -9999.f ;
+		Fixed_Angle:missing_value = -9999.f ;
+	float Range_to_First_Cell ;
+		Range_to_First_Cell:long_name = "Range to the center of the first cell" ;
+		Range_to_First_Cell:units = "meters" ;
+		Range_to_First_Cell:_FillValue = -9999.f ;
+		Range_to_First_Cell:missing_value = -9999.f ;
+	int Cell_Spacing_Method ;
+		Cell_Spacing_Method:long_name = "Technique for recording cell spacing: 0 = by vector, 1 = by segment" ;
+		Cell_Spacing_Method:_FillValue = -9999 ;
+		Cell_Spacing_Method:missing_value = -9999 ;
+	float Cell_Spacing ;
+		Cell_Spacing:long_name = "Distance between cells" ;
+		Cell_Spacing:units = "meters" ;
+		Cell_Spacing:_FillValue = -9999.f ;
+		Cell_Spacing:missing_value = -9999.f ;
+	float Nyquist_Velocity ;
+		Nyquist_Velocity:long_name = "Effective unambigous velocity" ;
+		Nyquist_Velocity:units = "meters/second" ;
+		Nyquist_Velocity:_FillValue = -9999.f ;
+		Nyquist_Velocity:missing_value = -9999.f ;
+	float Unambiguous_Range ;
+		Unambiguous_Range:long_name = "Effective unambigous range" ;
+		Unambiguous_Range:units = "meters" ;
+		Unambiguous_Range:_FillValue = -9999.f ;
+		Unambiguous_Range:missing_value = -9999.f ;
+	double Latitude ;
+		Latitude:long_name = "Latitude of the instrument" ;
+		Latitude:units = "degrees" ;
+		Latitude:_FillValue = -9999. ;
+		Latitude:missing_value = -9999. ;
+		Latitude:valid_range = -90., 90. ;
+	double Longitude ;
+		Longitude:long_name = "Longitude of the instrument" ;
+		Longitude:units = "degrees" ;
+		Longitude:_FillValue = -9999. ;
+		Longitude:missing_value = -9999. ;
+		Longitude:valid_range = -360., 360. ;
+	double Altitude ;
+		Altitude:long_name = "Altitude in meters (asl) of the instrument" ;
+		Altitude:units = "meters" ;
+		Altitude:_FillValue = -9999. ;
+		Altitude:missing_value = -9999. ;
+		Altitude:valid_range = -10000., 90000. ;
+	float Radar_Constant(numSystems) ;
+		Radar_Constant:long_name = "Radar Constant" ;
+		Radar_Constant:units = "mm6/(m3.mW.km-2)" ;
+		Radar_Constant:_FillValue = -9999.f ;
+		Radar_Constant:missing_value = -9999.f ;
+	float rcvr_gain(numSystems) ;
+		rcvr_gain:long_name = "Receiver Gain" ;
+		rcvr_gain:units = "dB" ;
+		rcvr_gain:_FillValue = -9999.f ;
+		rcvr_gain:missing_value = -9999.f ;
+	float ant_gain(numSystems) ;
+		ant_gain:long_name = "Antenna Gain" ;
+		ant_gain:units = "dB" ;
+		ant_gain:_FillValue = -9999.f ;
+		ant_gain:missing_value = -9999.f ;
+	float sys_gain(numSystems) ;
+		sys_gain:long_name = "System Gain" ;
+		sys_gain:units = "dB" ;
+		sys_gain:_FillValue = -9999.f ;
+		sys_gain:missing_value = -9999.f ;
+	float bm_width(numSystems) ;
+		bm_width:long_name = "Beam Width" ;
+		bm_width:units = "degrees" ;
+		bm_width:_FillValue = -9999.f ;
+		bm_width:missing_value = -9999.f ;
+	float pulse_width(numSystems) ;
+		pulse_width:long_name = "Pulse Width" ;
+		pulse_width:units = "seconds" ;
+		pulse_width:_FillValue = -9999.f ;
+		pulse_width:missing_value = -9999.f ;
+	float band_width(numSystems) ;
+		band_width:long_name = "Band Width" ;
+		band_width:units = "hertz" ;
+		band_width:_FillValue = -9999.f ;
+		band_width:missing_value = -9999.f ;
+	float peak_pwr(numSystems) ;
+		peak_pwr:long_name = "Peak Power" ;
+		peak_pwr:units = "watts" ;
+		peak_pwr:_FillValue = -9999.f ;
+		peak_pwr:missing_value = -9999.f ;
+	float xmtr_pwr(numSystems) ;
+		xmtr_pwr:long_name = "Transmitter Power" ;
+		xmtr_pwr:units = "dBM" ;
+		xmtr_pwr:_FillValue = -9999.f ;
+		xmtr_pwr:missing_value = -9999.f ;
+	float noise_pwr(numSystems) ;
+		noise_pwr:long_name = "Noise Power" ;
+		noise_pwr:units = "dBM" ;
+		noise_pwr:_FillValue = -9999.f ;
+		noise_pwr:missing_value = -9999.f ;
+	float tst_pls_pwr(numSystems) ;
+		tst_pls_pwr:long_name = "Test Pulse Power" ;
+		tst_pls_pwr:units = "dBM" ;
+		tst_pls_pwr:_FillValue = -9999.f ;
+		tst_pls_pwr:missing_value = -9999.f ;
+	float tst_pls_rng0(numSystems) ;
+		tst_pls_rng0:long_name = "Range to start of test pulse" ;
+		tst_pls_rng0:units = "meters" ;
+		tst_pls_rng0:_FillValue = -9999.f ;
+		tst_pls_rng0:missing_value = -9999.f ;
+	float tst_pls_rng1(numSystems) ;
+		tst_pls_rng1:long_name = "Range to end of test pulse" ;
+		tst_pls_rng1:units = "meters" ;
+		tst_pls_rng1:_FillValue = -9999.f ;
+		tst_pls_rng1:missing_value = -9999.f ;
+	float Wavelength(numSystems) ;
+		Wavelength:long_name = "System wavelength" ;
+		Wavelength:units = "meters" ;
+		Wavelength:_FillValue = -9999.f ;
+		Wavelength:missing_value = -9999.f ;
+	float PRF(numSystems) ;
+		PRF:long_name = "System pulse repetition frequency" ;
+		PRF:units = "pulses/sec" ;
+		PRF:_FillValue = -9999.f ;
+		PRF:missing_value = -9999.f ;
+	int calibration_data_present(numSystems) ;
+		calibration_data_present:long_name = "Used at bool; 0 = calibration variables used, 1 = calibration variables not used." ;
+		calibration_data_present:_FillValue = -32768 ;
+		calibration_data_present:missing_value = -32768 ;
+	float ant_gain_h_db(numSystems) ;
+		ant_gain_h_db:long_name = "Antenna gain H in db" ;
+		ant_gain_h_db:units = "dB" ;
+		ant_gain_h_db:_FillValue = -9999.f ;
+		ant_gain_h_db:missing_value = -9999.f ;
+	float ant_gain_v_db(numSystems) ;
+		ant_gain_v_db:long_name = "Antenna gain V in db" ;
+		ant_gain_v_db:units = "dB" ;
+		ant_gain_v_db:_FillValue = -9999.f ;
+		ant_gain_v_db:missing_value = -9999.f ;
+	float xmit_power_h_dbm(numSystems) ;
+		xmit_power_h_dbm:long_name = "Peak transmit H power in dBm" ;
+		xmit_power_h_dbm:units = "dBm" ;
+		xmit_power_h_dbm:_FillValue = -9999.f ;
+		xmit_power_h_dbm:missing_value = -9999.f ;
+	float xmit_power_v_dbm(numSystems) ;
+		xmit_power_v_dbm:long_name = "Peak transmit V power in dBm" ;
+		xmit_power_v_dbm:units = "dBm" ;
+		xmit_power_v_dbm:_FillValue = -9999.f ;
+		xmit_power_v_dbm:missing_value = -9999.f ;
+	float two_way_waveguide_loss_h_db(numSystems) ;
+		two_way_waveguide_loss_h_db:long_name = "two way H waveguide loss in dB" ;
+		two_way_waveguide_loss_h_db:units = "dB" ;
+		two_way_waveguide_loss_h_db:_FillValue = -9999.f ;
+		two_way_waveguide_loss_h_db:missing_value = -9999.f ;
+	float two_way_waveguide_loss_v_db(numSystems) ;
+		two_way_waveguide_loss_v_db:long_name = "two way V waveguide loss in dB" ;
+		two_way_waveguide_loss_v_db:units = "dB" ;
+		two_way_waveguide_loss_v_db:_FillValue = -9999.f ;
+		two_way_waveguide_loss_v_db:missing_value = -9999.f ;
+	float two_way_radome_loss_h_db(numSystems) ;
+		two_way_radome_loss_h_db:long_name = "two way H radome loss in dB" ;
+		two_way_radome_loss_h_db:units = "dB" ;
+		two_way_radome_loss_h_db:_FillValue = -9999.f ;
+		two_way_radome_loss_h_db:missing_value = -9999.f ;
+	float two_way_radome_loss_v_db(numSystems) ;
+		two_way_radome_loss_v_db:long_name = "two way V radome loss in dB" ;
+		two_way_radome_loss_v_db:units = "dB" ;
+		two_way_radome_loss_v_db:_FillValue = -9999.f ;
+		two_way_radome_loss_v_db:missing_value = -9999.f ;
+	float receiver_mismatch_loss_db(numSystems) ;
+		receiver_mismatch_loss_db:long_name = "Receiver mismatch loss in dB" ;
+		receiver_mismatch_loss_db:units = "dB" ;
+		receiver_mismatch_loss_db:_FillValue = -9999.f ;
+		receiver_mismatch_loss_db:missing_value = -9999.f ;
+	float radar_constant_h(numSystems) ;
+		radar_constant_h:long_name = "Radar constant H" ;
+		radar_constant_h:_FillValue = -9999.f ;
+		radar_constant_h:missing_value = -9999.f ;
+	float radar_constant_v(numSystems) ;
+		radar_constant_v:long_name = "Radar constant V" ;
+		radar_constant_v:_FillValue = -9999.f ;
+		radar_constant_v:missing_value = -9999.f ;
+	float noise_hc_dbm(numSystems) ;
+		noise_hc_dbm:long_name = "calibrated moise value H co-polar" ;
+		noise_hc_dbm:units = "dBm" ;
+		noise_hc_dbm:_FillValue = -9999.f ;
+		noise_hc_dbm:missing_value = -9999.f ;
+	float noise_vc_dbm(numSystems) ;
+		noise_vc_dbm:long_name = "calibrated moise value V co-polar" ;
+		noise_vc_dbm:units = "dBm" ;
+		noise_vc_dbm:_FillValue = -9999.f ;
+		noise_vc_dbm:missing_value = -9999.f ;
+	float noise_hx_dbm(numSystems) ;
+		noise_hx_dbm:long_name = "calibrated moise value H cross-polar" ;
+		noise_hx_dbm:units = "dBm" ;
+		noise_hx_dbm:_FillValue = -9999.f ;
+		noise_hx_dbm:missing_value = -9999.f ;
+	float noise_vx_dbm(numSystems) ;
+		noise_vx_dbm:long_name = "calibrated moise value V cross-polar" ;
+		noise_vx_dbm:units = "dBm" ;
+		noise_vx_dbm:_FillValue = -9999.f ;
+		noise_vx_dbm:missing_value = -9999.f ;
+	float receiver_gain_hc_db(numSystems) ;
+		receiver_gain_hc_db:long_name = "Receiver gain H co-polar" ;
+		receiver_gain_hc_db:units = "dB" ;
+		receiver_gain_hc_db:_FillValue = -9999.f ;
+		receiver_gain_hc_db:missing_value = -9999.f ;
+	float receiver_gain_vc_db(numSystems) ;
+		receiver_gain_vc_db:long_name = "Receiver gain V co-polar" ;
+		receiver_gain_vc_db:units = "dB" ;
+		receiver_gain_vc_db:_FillValue = -9999.f ;
+		receiver_gain_vc_db:missing_value = -9999.f ;
+	float receiver_gain_hx_db(numSystems) ;
+		receiver_gain_hx_db:long_name = "Receiver gain H cross-polar" ;
+		receiver_gain_hx_db:units = "dB" ;
+		receiver_gain_hx_db:_FillValue = -9999.f ;
+		receiver_gain_hx_db:missing_value = -9999.f ;
+	float receiver_gain_vx_db(numSystems) ;
+		receiver_gain_vx_db:long_name = "Receiver gain V cross-polar" ;
+		receiver_gain_vx_db:units = "dB" ;
+		receiver_gain_vx_db:_FillValue = -9999.f ;
+		receiver_gain_vx_db:missing_value = -9999.f ;
+	float base_1km_hc_dbz(numSystems) ;
+		base_1km_hc_dbz:long_name = "Base reflectivity at 1km, H co-polar" ;
+		base_1km_hc_dbz:units = "dBz" ;
+		base_1km_hc_dbz:_FillValue = -9999.f ;
+		base_1km_hc_dbz:missing_value = -9999.f ;
+	float base_1km_vc_dbz(numSystems) ;
+		base_1km_vc_dbz:long_name = "Base reflectivity at 1km, V co-polar" ;
+		base_1km_vc_dbz:units = "dBz" ;
+		base_1km_vc_dbz:_FillValue = -9999.f ;
+		base_1km_vc_dbz:missing_value = -9999.f ;
+	float base_1km_hx_dbz(numSystems) ;
+		base_1km_hx_dbz:long_name = "Base reflectivity at 1km, H cross-polar" ;
+		base_1km_hx_dbz:units = "dBz" ;
+		base_1km_hx_dbz:_FillValue = -9999.f ;
+		base_1km_hx_dbz:missing_value = -9999.f ;
+	float base_1km_vx_dbz(numSystems) ;
+		base_1km_vx_dbz:long_name = "Base reflectivity at 1km, V cross-polar" ;
+		base_1km_vx_dbz:units = "dBz" ;
+		base_1km_vx_dbz:_FillValue = -9999.f ;
+		base_1km_vx_dbz:missing_value = -9999.f ;
+	float sun_power_hc_dbm(numSystems) ;
+		sun_power_hc_dbm:long_name = "Sun power H co-polar" ;
+		sun_power_hc_dbm:units = "dBm" ;
+		sun_power_hc_dbm:_FillValue = -9999.f ;
+		sun_power_hc_dbm:missing_value = -9999.f ;
+	float sun_power_vc_dbm(numSystems) ;
+		sun_power_vc_dbm:long_name = "Sun power V co-polar" ;
+		sun_power_vc_dbm:units = "dBm" ;
+		sun_power_vc_dbm:_FillValue = -9999.f ;
+		sun_power_vc_dbm:missing_value = -9999.f ;
+	float sun_power_hx_dbm(numSystems) ;
+		sun_power_hx_dbm:long_name = "Sun power H cross-polar" ;
+		sun_power_hx_dbm:units = "dBm" ;
+		sun_power_hx_dbm:_FillValue = -9999.f ;
+		sun_power_hx_dbm:missing_value = -9999.f ;
+	float sun_power_vx_dbm(numSystems) ;
+		sun_power_vx_dbm:long_name = "Sun power V cross-polar" ;
+		sun_power_vx_dbm:units = "dBm" ;
+		sun_power_vx_dbm:_FillValue = -9999.f ;
+		sun_power_vx_dbm:missing_value = -9999.f ;
+	float noise_source_power_h_dbm(numSystems) ;
+		noise_source_power_h_dbm:long_name = "Noise source power H in dBm" ;
+		noise_source_power_h_dbm:units = "dBm" ;
+		noise_source_power_h_dbm:_FillValue = -9999.f ;
+		noise_source_power_h_dbm:missing_value = -9999.f ;
+	float noise_source_power_v_dbm(numSystems) ;
+		noise_source_power_v_dbm:long_name = "Noise source power V in dBm" ;
+		noise_source_power_v_dbm:units = "dBm" ;
+		noise_source_power_v_dbm:_FillValue = -9999.f ;
+		noise_source_power_v_dbm:missing_value = -9999.f ;
+	float power_measure_loss_h_db(numSystems) ;
+		power_measure_loss_h_db:long_name = "power measurement loss H in dB" ;
+		power_measure_loss_h_db:units = "dB" ;
+		power_measure_loss_h_db:_FillValue = -9999.f ;
+		power_measure_loss_h_db:missing_value = -9999.f ;
+	float power_measure_loss_v_db(numSystems) ;
+		power_measure_loss_v_db:long_name = "power measurement loss V in dB" ;
+		power_measure_loss_v_db:units = "dB" ;
+		power_measure_loss_v_db:_FillValue = -9999.f ;
+		power_measure_loss_v_db:missing_value = -9999.f ;
+	float coupler_forward_loss_h_db(numSystems) ;
+		coupler_forward_loss_h_db:long_name = "Directional coupler forward loss H in dB" ;
+		coupler_forward_loss_h_db:units = "dB" ;
+		coupler_forward_loss_h_db:_FillValue = -9999.f ;
+		coupler_forward_loss_h_db:missing_value = -9999.f ;
+	float coupler_forward_loss_v_db(numSystems) ;
+		coupler_forward_loss_v_db:long_name = "Directional coupler forward loss V in dB" ;
+		coupler_forward_loss_v_db:units = "dB" ;
+		coupler_forward_loss_v_db:_FillValue = -9999.f ;
+		coupler_forward_loss_v_db:missing_value = -9999.f ;
+	float zdr_correction_db(numSystems) ;
+		zdr_correction_db:long_name = "zdr correction in dB" ;
+		zdr_correction_db:units = "dB" ;
+		zdr_correction_db:_FillValue = -9999.f ;
+		zdr_correction_db:missing_value = -9999.f ;
+	float ldr_correction_h_db(numSystems) ;
+		ldr_correction_h_db:long_name = "ldr correction H in dB" ;
+		ldr_correction_h_db:units = "dB" ;
+		ldr_correction_h_db:_FillValue = -9999.f ;
+		ldr_correction_h_db:missing_value = -9999.f ;
+	float ldr_correction_v_db(numSystems) ;
+		ldr_correction_v_db:long_name = "ldr correction V in dB" ;
+		ldr_correction_v_db:units = "dB" ;
+		ldr_correction_v_db:_FillValue = -9999.f ;
+		ldr_correction_v_db:missing_value = -9999.f ;
+	float system_phidp_deg(numSystems) ;
+		system_phidp_deg:long_name = "system phidp, degrees" ;
+		system_phidp_deg:units = "degrees" ;
+		system_phidp_deg:_FillValue = -9999.f ;
+		system_phidp_deg:missing_value = -9999.f ;
+	double time_offset(Time) ;
+		time_offset:long_name = "time offset of the current record from base_time" ;
+		time_offset:units = "seconds" ;
+		time_offset:_FillValue = 0. ;
+		time_offset:missing_value = 0. ;
+	float Azimuth(Time) ;
+		Azimuth:long_name = "Earth relative azimuth of the ray" ;
+		Azimuth:Comment = "Degrees clockwise from true North" ;
+		Azimuth:units = "degrees" ;
+		Azimuth:valid_range = -360., 360. ;
+		Azimuth:_FillValue = -9999.f ;
+		Azimuth:missing_value = -9999.f ;
+	float Elevation(Time) ;
+		Elevation:long_name = "Earth relative elevation of the ray" ;
+		Elevation:Comment = "Degrees from earth tangent towards zenith" ;
+		Elevation:units = "degrees" ;
+		Elevation:valid_range = -360., 360. ;
+		Elevation:_FillValue = -9999.f ;
+		Elevation:missing_value = -9999.f ;
+	float clip_range(Time) ;
+		clip_range:long_name = "Range of last useful cell" ;
+		clip_range:units = "meters" ;
+		clip_range:_FillValue = -9999.f ;
+		clip_range:missing_value = -9999.f ;
+	short AIQ(Time, maxCells) ;
+		AIQ:long_name = "AIQ" ;
+		AIQ:units = "unknown" ;
+		AIQ:scale_factor = 0.12f ;
+		AIQ:add_offset = 0.f ;
+		AIQ:_FillValue = -32767s ;
+		AIQ:missing_value = -32767s ;
+		AIQ:polarization = "None" ;
+		AIQ:Frequencies_GHz = 2.7969420339121 ;
+		AIQ:InterPulsePeriods_secs = 0.00100000006103516 ;
+		AIQ:num_segments = 1 ;
+		AIQ:cells_in_segment = 996 ;
+		AIQ:meters_between_cells = 150. ;
+		AIQ:meters_to_first_cell = 150. ;
+	short NIQ(Time, maxCells) ;
+		NIQ:long_name = "NIQ" ;
+		NIQ:units = "dBz" ;
+		NIQ:scale_factor = 0.01f ;
+		NIQ:add_offset = 0.f ;
+		NIQ:_FillValue = -32767s ;
+		NIQ:missing_value = -32767s ;
+		NIQ:polarization = "None" ;
+		NIQ:Frequencies_GHz = 2.7969420339121 ;
+		NIQ:InterPulsePeriods_secs = 0.00100000006103516 ;
+		NIQ:num_segments = 1 ;
+		NIQ:cells_in_segment = 996 ;
+		NIQ:meters_between_cells = 150. ;
+		NIQ:meters_to_first_cell = 150. ;
+	short KDP(Time, maxCells) ;
+		KDP:long_name = "KDP" ;
+		KDP:units = "unknown" ;
+		KDP:scale_factor = 0.001f ;
+		KDP:add_offset = 0.f ;
+		KDP:_FillValue = -32767s ;
+		KDP:missing_value = -32767s ;
+		KDP:polarization = "None" ;
+		KDP:Frequencies_GHz = 2.7969420339121 ;
+		KDP:InterPulsePeriods_secs = 0.00100000006103516 ;
+		KDP:num_segments = 1 ;
+		KDP:cells_in_segment = 996 ;
+		KDP:meters_between_cells = 150. ;
+		KDP:meters_to_first_cell = 150. ;
+	short DBMHC(Time, maxCells) ;
+		DBMHC:long_name = "Computed Horizontal Co-polar Power " ;
+		DBMHC:units = "dBm" ;
+		DBMHC:scale_factor = 0.01f ;
+		DBMHC:add_offset = 0.f ;
+		DBMHC:_FillValue = -32767s ;
+		DBMHC:missing_value = -32767s ;
+		DBMHC:polarization = "None" ;
+		DBMHC:Frequencies_GHz = 2.7969420339121 ;
+		DBMHC:InterPulsePeriods_secs = 0.00100000006103516 ;
+		DBMHC:num_segments = 1 ;
+		DBMHC:cells_in_segment = 996 ;
+		DBMHC:meters_between_cells = 150. ;
+		DBMHC:meters_to_first_cell = 150. ;
+	short DBMHX(Time, maxCells) ;
+		DBMHX:long_name = "Computed Horizontal Cross-polar Power " ;
+		DBMHX:units = "dBm" ;
+		DBMHX:scale_factor = 0.01f ;
+		DBMHX:add_offset = 0.f ;
+		DBMHX:_FillValue = -32767s ;
+		DBMHX:missing_value = -32767s ;
+		DBMHX:polarization = "None" ;
+		DBMHX:Frequencies_GHz = 2.7969420339121 ;
+		DBMHX:InterPulsePeriods_secs = 0.00100000006103516 ;
+		DBMHX:num_segments = 1 ;
+		DBMHX:cells_in_segment = 996 ;
+		DBMHX:meters_between_cells = 150. ;
+		DBMHX:meters_to_first_cell = 150. ;
+	short DBMVC(Time, maxCells) ;
+		DBMVC:long_name = "Computed Vertical Co-polar Power " ;
+		DBMVC:units = "dBm" ;
+		DBMVC:scale_factor = 0.01f ;
+		DBMVC:add_offset = 0.f ;
+		DBMVC:_FillValue = -32767s ;
+		DBMVC:missing_value = -32767s ;
+		DBMVC:polarization = "None" ;
+		DBMVC:Frequencies_GHz = 2.7969420339121 ;
+		DBMVC:InterPulsePeriods_secs = 0.00100000006103516 ;
+		DBMVC:num_segments = 1 ;
+		DBMVC:cells_in_segment = 996 ;
+		DBMVC:meters_between_cells = 150. ;
+		DBMVC:meters_to_first_cell = 150. ;
+	short DBMVX(Time, maxCells) ;
+		DBMVX:long_name = "Computed Vertical Cross-polar Power " ;
+		DBMVX:units = "dBm" ;
+		DBMVX:scale_factor = 0.01f ;
+		DBMVX:add_offset = 0.f ;
+		DBMVX:_FillValue = -32767s ;
+		DBMVX:missing_value = -32767s ;
+		DBMVX:polarization = "None" ;
+		DBMVX:Frequencies_GHz = 2.7969420339121 ;
+		DBMVX:InterPulsePeriods_secs = 0.00100000006103516 ;
+		DBMVX:num_segments = 1 ;
+		DBMVX:cells_in_segment = 996 ;
+		DBMVX:meters_between_cells = 150. ;
+		DBMVX:meters_to_first_cell = 150. ;
+	short DBZ(Time, maxCells) ;
+		DBZ:long_name = "Computed Horizontal Co-polar Reflectivity" ;
+		DBZ:units = "dBz" ;
+		DBZ:scale_factor = 0.01f ;
+		DBZ:add_offset = 0.f ;
+		DBZ:_FillValue = -32767s ;
+		DBZ:missing_value = -32767s ;
+		DBZ:polarization = "None" ;
+		DBZ:Frequencies_GHz = 2.7969420339121 ;
+		DBZ:InterPulsePeriods_secs = 0.00100000006103516 ;
+		DBZ:num_segments = 1 ;
+		DBZ:cells_in_segment = 996 ;
+		DBZ:meters_between_cells = 150. ;
+		DBZ:meters_to_first_cell = 150. ;
+	short LDRH(Time, maxCells) ;
+		LDRH:long_name = "Computed Cross-polar Depolarization Ratio. (Htx->Vrx)" ;
+		LDRH:units = "unknown" ;
+		LDRH:scale_factor = 0.01f ;
+		LDRH:add_offset = 0.f ;
+		LDRH:_FillValue = -32767s ;
+		LDRH:missing_value = -32767s ;
+		LDRH:polarization = "None" ;
+		LDRH:Frequencies_GHz = 2.7969420339121 ;
+		LDRH:InterPulsePeriods_secs = 0.00100000006103516 ;
+		LDRH:num_segments = 1 ;
+		LDRH:cells_in_segment = 996 ;
+		LDRH:meters_between_cells = 150. ;
+		LDRH:meters_to_first_cell = 150. ;
+	short LDRV(Time, maxCells) ;
+		LDRV:long_name = "Computed Cross-polar Depolarization Ration (Vtx->Hrx" ;
+		LDRV:units = "unknown" ;
+		LDRV:scale_factor = 0.01f ;
+		LDRV:add_offset = 0.f ;
+		LDRV:_FillValue = -32767s ;
+		LDRV:missing_value = -32767s ;
+		LDRV:polarization = "None" ;
+		LDRV:Frequencies_GHz = 2.7969420339121 ;
+		LDRV:InterPulsePeriods_secs = 0.00100000006103516 ;
+		LDRV:num_segments = 1 ;
+		LDRV:cells_in_segment = 996 ;
+		LDRV:meters_between_cells = 150. ;
+		LDRV:meters_to_first_cell = 150. ;
+	short NCP(Time, maxCells) ;
+		NCP:long_name = "Computed Normalized Coherient Power" ;
+		NCP:units = "none" ;
+		NCP:scale_factor = 0.001f ;
+		NCP:add_offset = 0.f ;
+		NCP:_FillValue = -32767s ;
+		NCP:missing_value = -32767s ;
+		NCP:polarization = "None" ;
+		NCP:Frequencies_GHz = 2.7969420339121 ;
+		NCP:InterPulsePeriods_secs = 0.00100000006103516 ;
+		NCP:num_segments = 1 ;
+		NCP:cells_in_segment = 996 ;
+		NCP:meters_between_cells = 150. ;
+		NCP:meters_to_first_cell = 150. ;
+	short PHIDP(Time, maxCells) ;
+		PHIDP:long_name = "Computed Differential Phase" ;
+		PHIDP:units = "unknown" ;
+		PHIDP:scale_factor = 0.01f ;
+		PHIDP:add_offset = 0.f ;
+		PHIDP:_FillValue = -32767s ;
+		PHIDP:missing_value = -32767s ;
+		PHIDP:polarization = "None" ;
+		PHIDP:Frequencies_GHz = 2.7969420339121 ;
+		PHIDP:InterPulsePeriods_secs = 0.00100000006103516 ;
+		PHIDP:num_segments = 1 ;
+		PHIDP:cells_in_segment = 996 ;
+		PHIDP:meters_between_cells = 150. ;
+		PHIDP:meters_to_first_cell = 150. ;
+	short RHOHV(Time, maxCells) ;
+		RHOHV:long_name = "Computed Correlation Coefficient between HH and VV" ;
+		RHOHV:units = "none" ;
+		RHOHV:scale_factor = 0.001f ;
+		RHOHV:add_offset = 0.f ;
+		RHOHV:_FillValue = -32767s ;
+		RHOHV:missing_value = -32767s ;
+		RHOHV:polarization = "None" ;
+		RHOHV:Frequencies_GHz = 2.7969420339121 ;
+		RHOHV:InterPulsePeriods_secs = 0.00100000006103516 ;
+		RHOHV:num_segments = 1 ;
+		RHOHV:cells_in_segment = 996 ;
+		RHOHV:meters_between_cells = 150. ;
+		RHOHV:meters_to_first_cell = 150. ;
+	short VEL(Time, maxCells) ;
+		VEL:long_name = "Computed Velocity" ;
+		VEL:units = "m/s" ;
+		VEL:scale_factor = 0.01f ;
+		VEL:add_offset = 0.f ;
+		VEL:_FillValue = -32767s ;
+		VEL:missing_value = -32767s ;
+		VEL:polarization = "None" ;
+		VEL:Frequencies_GHz = 2.7969420339121 ;
+		VEL:InterPulsePeriods_secs = 0.00100000006103516 ;
+		VEL:num_segments = 1 ;
+		VEL:cells_in_segment = 996 ;
+		VEL:meters_between_cells = 150. ;
+		VEL:meters_to_first_cell = 150. ;
+	short WIDTH(Time, maxCells) ;
+		WIDTH:long_name = "Computed Spectrum Width" ;
+		WIDTH:units = "unknown" ;
+		WIDTH:scale_factor = 0.01f ;
+		WIDTH:add_offset = 0.f ;
+		WIDTH:_FillValue = -32767s ;
+		WIDTH:missing_value = -32767s ;
+		WIDTH:polarization = "None" ;
+		WIDTH:Frequencies_GHz = 2.7969420339121 ;
+		WIDTH:InterPulsePeriods_secs = 0.00100000006103516 ;
+		WIDTH:num_segments = 1 ;
+		WIDTH:cells_in_segment = 996 ;
+		WIDTH:meters_between_cells = 150. ;
+		WIDTH:meters_to_first_cell = 150. ;
+	short ZDR(Time, maxCells) ;
+		ZDR:long_name = "Computed Differential Co-polar Reflectivities" ;
+		ZDR:units = "none" ;
+		ZDR:scale_factor = 0.001f ;
+		ZDR:add_offset = 0.f ;
+		ZDR:_FillValue = -32767s ;
+		ZDR:missing_value = -32767s ;
+		ZDR:polarization = "None" ;
+		ZDR:Frequencies_GHz = 2.7969420339121 ;
+		ZDR:InterPulsePeriods_secs = 0.00100000006103516 ;
+		ZDR:num_segments = 1 ;
+		ZDR:cells_in_segment = 996 ;
+		ZDR:meters_between_cells = 150. ;
+		ZDR:meters_to_first_cell = 150. ;
+	short CH(Time, maxCells) ;
+		CH:long_name = "Computed Magnitude of Cross Correlation between HH and VH" ;
+		CH:units = "none" ;
+		CH:scale_factor = 0.001f ;
+		CH:add_offset = 0.f ;
+		CH:_FillValue = -32767s ;
+		CH:missing_value = -32767s ;
+		CH:polarization = "None" ;
+		CH:Frequencies_GHz = 2.7969420339121 ;
+		CH:InterPulsePeriods_secs = 0.00100000006103516 ;
+		CH:num_segments = 1 ;
+		CH:cells_in_segment = 996 ;
+		CH:meters_between_cells = 150. ;
+		CH:meters_to_first_cell = 150. ;
+	short AH(Time, maxCells) ;
+		AH:long_name = "Computed Angle of Cross Correlation between HH and VH" ;
+		AH:units = "unknown" ;
+		AH:scale_factor = 0.01f ;
+		AH:add_offset = 0.f ;
+		AH:_FillValue = -32767s ;
+		AH:missing_value = -32767s ;
+		AH:polarization = "None" ;
+		AH:Frequencies_GHz = 2.7969420339121 ;
+		AH:InterPulsePeriods_secs = 0.00100000006103516 ;
+		AH:num_segments = 1 ;
+		AH:cells_in_segment = 996 ;
+		AH:meters_between_cells = 150. ;
+		AH:meters_to_first_cell = 150. ;
+	short CV(Time, maxCells) ;
+		CV:long_name = "Computed Magnitude of Cross Correlation between VV and HV" ;
+		CV:units = "none" ;
+		CV:scale_factor = 0.001f ;
+		CV:add_offset = 0.f ;
+		CV:_FillValue = -32767s ;
+		CV:missing_value = -32767s ;
+		CV:polarization = "None" ;
+		CV:Frequencies_GHz = 2.7969420339121 ;
+		CV:InterPulsePeriods_secs = 0.00100000006103516 ;
+		CV:num_segments = 1 ;
+		CV:cells_in_segment = 996 ;
+		CV:meters_between_cells = 150. ;
+		CV:meters_to_first_cell = 150. ;
+	short AV(Time, maxCells) ;
+		AV:long_name = "Computed Angle of Cross Correlation between VV and HV" ;
+		AV:units = "unknown" ;
+		AV:scale_factor = 0.01f ;
+		AV:add_offset = 0.f ;
+		AV:_FillValue = -32767s ;
+		AV:missing_value = -32767s ;
+		AV:polarization = "None" ;
+		AV:Frequencies_GHz = 2.7969420339121 ;
+		AV:InterPulsePeriods_secs = 0.00100000006103516 ;
+		AV:num_segments = 1 ;
+		AV:cells_in_segment = 996 ;
+		AV:meters_between_cells = 150. ;
+		AV:meters_to_first_cell = 150. ;
+
+// global attributes:
+		:Conventions = "NCAR_ATD-NOAA_ETL/Scanning_Remote_Sensor" ;
+		:Instrument_Name = "SPOLRVP8" ;
+		:Instrument_Type = "Ground" ;
+		:Scan_Mode = "SUR" ;
+		:Volume_Start_Time = "2008/06/05 23:47:48" ;
+		:Year = 2008 ;
+		:Month = 6 ;
+		:Day = 5 ;
+		:Hour = 23 ;
+		:Minute = 47 ;
+		:Second = 48 ;
+		:Volume_Number = 54 ;
+		:Scan_Number = 3 ;
+		:Num_Samples = 192 ;
+		:Project_Name = "TIMREX" ;
+		:Production_Date = "2008/10/18 03:07:59" ;
+		:Producer_Name = "NCAR EOL" ;
+		:Software = "Foray NcRadarFile Class" ;
+data:
+
+ volume_start_time = 1212709668 ;
+
+ base_time = 1212709668 ;
+
+ field_names =
+  "AIQ",
+  "NIQ",
+  "KDP",
+  "DBMHC",
+  "DBMHX",
+  "DBMVC",
+  "DBMVX",
+  "DBZ",
+  "LDRH",
+  "LDRV",
+  "NCP",
+  "PHIDP",
+  "RHOHV",
+  "VEL",
+  "WIDTH",
+  "ZDR",
+  "CH",
+  "AH",
+  "CV",
+  "AV" ;
+
+ Fixed_Angle = 2.5983 ;
+
+ Range_to_First_Cell = 150 ;
+
+ Cell_Spacing_Method = 1 ;
+
+ Cell_Spacing = 150 ;
+
+ Nyquist_Velocity = 26.925 ;
+
+ Unambiguous_Range = 150000 ;
+
+ Latitude = 22.5266990661621 ;
+
+ Longitude = 120.433502197266 ;
+
+ Altitude = 45.0000017881393 ;
+
+ Radar_Constant = -70.72 ;
+
+ rcvr_gain = 36.8883 ;
+
+ ant_gain = 45.15 ;
+
+ sys_gain = 82.0383 ;
+
+ bm_width = 0.92 ;
+
+ pulse_width = 1 ;
+
+ band_width = _ ;
+
+ peak_pwr = 3.380649e+08 ;
+
+ xmtr_pwr = 85.29 ;
+
+ noise_pwr = -114.6605 ;
+
+ tst_pls_pwr = 20 ;
+
+ tst_pls_rng0 = 145 ;
+
+ tst_pls_rng1 = 148 ;
+
+ Wavelength = 0.1071858 ;
+
+ PRF = 999.9999 ;
+
+ calibration_data_present = 1 ;
+
+ ant_gain_h_db = 45.15 ;
+
+ ant_gain_v_db = 44.94 ;
+
+ xmit_power_h_dbm = 85.52277 ;
+
+ xmit_power_v_dbm = 85.74722 ;
+
+ two_way_waveguide_loss_h_db = 0 ;
+
+ two_way_waveguide_loss_v_db = 0 ;
+
+ two_way_radome_loss_h_db = 0 ;
+
+ two_way_radome_loss_v_db = 0 ;
+
+ receiver_mismatch_loss_db = 0.95 ;
+
+ radar_constant_h = -70.72 ;
+
+ radar_constant_v = -71.18 ;
+
+ noise_hc_dbm = -77.7722 ;
+
+ noise_vc_dbm = -77.9013 ;
+
+ noise_hx_dbm = -77.8385 ;
+
+ noise_vx_dbm = -77.9904 ;
+
+ receiver_gain_hc_db = 36.8883 ;
+
+ receiver_gain_vc_db = 36.4709 ;
+
+ receiver_gain_hx_db = 36.8704 ;
+
+ receiver_gain_vx_db = 36.3969 ;
+
+ base_1km_hc_dbz = -43.94 ;
+
+ base_1km_vc_dbz = -43.192 ;
+
+ base_1km_hx_dbz = -43.988 ;
+
+ base_1km_vx_dbz = -43.207 ;
+
+ sun_power_hc_dbm = -66.9447 ;
+
+ sun_power_vc_dbm = -67.5161 ;
+
+ sun_power_hx_dbm = -66.9837 ;
+
+ sun_power_vx_dbm = -67.5845 ;
+
+ noise_source_power_h_dbm = _ ;
+
+ noise_source_power_v_dbm = _ ;
+
+ power_measure_loss_h_db = 21.37 ;
+
+ power_measure_loss_v_db = 21.16 ;
+
+ coupler_forward_loss_h_db = 36.92 ;
+
+ coupler_forward_loss_v_db = 37 ;
+
+ zdr_correction_db = 0.51 ;
+
+ ldr_correction_h_db = 0 ;
+
+ ldr_correction_v_db = 0 ;
+
+ system_phidp_deg = 45 ;
+
+ time_offset = _, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 
+    5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 
+    7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 
+    11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 
+    13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 
+    15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 
+    17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 
+    18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 
+    20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 
+    22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 
+    24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 
+    25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 
+    27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 
+    29, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 31, 
+    31, 31, 31, 31, 31, 31, 31, 31, 31, 32, 32, 32, 32, 32, 32, 32, 32, 32, 
+    32, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 34, 34, 34, 34, 34, 34, 34, 
+    34, 34, 34, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 36, 36, 36, 36, 36, 
+    36, 36, 36, 36, 36, 36, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 38, 38, 
+    38, 38, 38, 38, 38, 38, 38, 38, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 
+    40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41, 
+    41, 41, 41, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 43, 43, 43, 43, 43, 
+    43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 45, 45, 
+    45, 45, 45, 45, 45, 45, 45, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 
+    47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 48 ;
+
+ Azimuth = 131.25, 138, 138.75, 139.5, 140.25, 141, 141.75, 142.5, 143.25, 
+    144, 144.75, 145.5, 146.25, 147, 147.75, 148.5, 149.25, 150, 150.75, 
+    151.5, 152.25, 153, 153.75, 154.5, 155.25, 156, 156.75, 157.5, 158.25, 
+    159, 159.75, 160.5, 161.25, 162, 162.75, 163.5, 164.25, 165, 165.75, 
+    166.5, 167.25, 168, 168.75, 169.5, 170.25, 171, 171.75, 172.5, 173.25, 
+    174, 174.75, 175.5, 176.25, 177, 177.75, 178.5, 179.25, 180, 180.75, 
+    181.5, 182.25, 183, 183.75, 184.5, 185.25, 186, 186.75, 187.5, 188.25, 
+    189, 189.75, 190.5, 191.25, 192, 192.75, 193.5, 194.25, 195, 195.75, 
+    196.5, 197.25, 198, 198.75, 199.5, 200.25, 201, 201.75, 202.5, 203.25, 
+    204, 204.75, 205.5, 206.25, 207, 207.75, 208.5, 209.25, 210, 210.75, 
+    211.5, 212.25, 213, 213.75, 214.5, 215.25, 216, 216.75, 217.5, 218.25, 
+    219, 219.75, 220.5, 221.25, 222, 222.75, 223.5, 224.25, 225, 225.75, 
+    226.5, 227.25, 228, 228.75, 229.5, 230.25, 231, 231.75, 232.5, 233.25, 
+    234, 234.75, 235.5, 236.25, 237, 237.75, 238.5, 239.25, 240, 240.75, 
+    241.5, 242.25, 243, 243.75, 244.5, 245.25, 246, 246.75, 247.5, 248.25, 
+    249, 249.75, 250.5, 251.25, 252, 252.75, 253.5, 254.25, 255, 255.75, 
+    256.5, 257.25, 258, 258.75, 259.5, 260.25, 261, 261.75, 262.5, 263.25, 
+    264, 264.75, 265.5, 266.25, 267, 267.75, 268.5, 269.25, 270, 270.75, 
+    271.5, 272.25, 273, 273.75, 274.5, 275.25, 276, 276.75, 277.5, 278.25, 
+    279, 279.75, 280.5, 281.25, 282, 282.75, 283.5, 284.25, 285, 285.75, 
+    286.5, 287.25, 288, 288.75, 289.5, 290.25, 291, 291.75, 292.5, 293.25, 
+    294, 294.75, 295.5, 296.25, 297, 297.75, 298.5, 299.25, 300, 300.75, 
+    301.5, 302.25, 303, 303.75, 304.5, 305.25, 306, 306.75, 307.5, 308.25, 
+    309, 309.75, 310.5, 311.25, 312, 312.75, 313.5, 314.25, 315, 315.75, 
+    316.5, 317.25, 318, 318.75, 319.5, 320.25, 321, 321.75, 322.5, 323.25, 
+    324, 324.75, 325.5, 326.25, 327, 327.75, 328.5, 329.25, 330, 330.75, 
+    331.5, 332.25, 333, 333.75, 334.5, 335.25, 336, 336.75, 337.5, 338.25, 
+    339, 339.75, 340.5, 341.25, 342, 342.75, 343.5, 344.25, 345, 345.75, 
+    346.5, 347.25, 348, 348.75, 349.5, 350.25, 351, 351.75, 352.5, 353.25, 
+    354, 354.75, 355.5, 356.25, 357, 357.75, 358.5, 359.25, 0, 0.75, 1.5, 
+    2.25, 3, 3.75, 4.5, 5.25, 6, 6.75, 7.5, 8.25, 9, 9.75, 10.5, 11.25, 12, 
+    12.75, 13.5, 14.25, 15, 15.75, 16.5, 17.25, 18, 18.75, 19.5, 20.25, 21, 
+    21.75, 22.5, 23.25, 24, 24.75, 25.5, 26.25, 27, 27.75, 28.5, 29.25, 30, 
+    30.75, 31.5, 32.25, 33, 33.75, 34.5, 35.25, 36, 36.75, 37.5, 38.25, 39, 
+    39.75, 40.5, 41.25, 42, 42.75, 43.5, 44.25, 45, 45.75, 46.5, 47.25, 48, 
+    48.75, 49.5, 50.25, 51, 51.75, 52.5, 53.25, 54, 54.75, 55.5, 56.25, 57, 
+    57.75, 58.5, 59.25, 60, 60.75, 61.5, 62.25, 63, 63.75, 64.5, 65.25, 66, 
+    66.75, 67.5, 68.25, 69, 69.75, 70.5, 71.25, 72, 72.75, 73.5, 74.25, 75, 
+    75.75, 76.5, 77.25, 78, 78.75, 79.5, 80.25, 81, 81.75, 82.5, 83.25, 84, 
+    84.75, 85.5, 86.25, 87, 87.75, 88.5, 89.25, 90, 90.75, 91.5, 92.25, 93, 
+    93.75, 94.5, 95.25, 96, 96.75, 97.5, 98.25, 99, 99.75, 100.5, 101.25, 
+    102, 102.75, 103.5, 104.25, 105, 105.75, 106.5, 107.25, 108, 108.75, 
+    109.5, 110.25, 111, 111.75, 112.5, 113.25, 114, 114.75, 115.5, 116.25, 
+    117, 117.75, 118.5, 119.25, 120, 120.75, 121.5, 122.25, 123, 123.75, 
+    124.5, 125.25, 126, 126.75, 127.5, 128.25, 129, 129.75, 130.5, 131.25, 
+    132, 132.75, 133.5, 134.25, 135, 135.75, 136.5, 137.25, 138 ;
+
+ Elevation = 1.7908, 2.5214, 2.6203, 2.6203, 2.6148, 2.6093, 2.5928, 2.6093, 
+    2.6093, 2.5983, 2.6038, 2.5928, 2.5983, 2.6038, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.6038, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 
+    2.5983, 2.5983, 2.5983, 2.5983, 2.5983, 2.5983 ;
+
+ clip_range = -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, -32768, 
+    -32768, -32768, -32768, -32768, -32768, -32768 ;
+
+ AIQ =
+  331, 1292, 58, -1481, -1265, -1337, 771, 1397, -1215, -1116, -116, -427, 
+    -1381, -1269, -473, 615, 1208, 1220, 651, 615, -537, -400, -22, 370, 
+    -441, 13, 1232, 843, 519, -335, -716, -253, 1463, -1328, -720, -801, 
+    -135, 152, -672, 987, 399, 828, -1097, 1218, 447, 321, -496, 974, 1128, 
+    1299, -1358, 511, 269, 88, -168, -392, -682, 594, 474, 452, 1181, 63, 
+    -1485, -131, 680, -123, 444, 1209, -839, 347, -1259, -861, 1344, -892, 
+    -1231, -1498, -996, -738, -597, -318, -1075, -751, 984, 631, 491, -164, 
+    -441, -1023, -503, -41, -471, 1037, 88, -811, -938, 518, -634, -1268, 
+    -873, -1204, 11, 421, -374, -329, -1340, -489, 211, -413, -405, -1028, 
+    1294, 1075, 1411, -1080, 20, 598, 744, -903, -678, -33, 680, 53, 387, 
+    437, 589, -1330, -1396, 176, -206, 1038, -1165, -843, -1055, 558, 1009, 
+    1119, 1328, -1455, -326, -1362, -726, -128, 127, -152, -226, -840, -463, 
+    166, 221, -1023, -690, -505, 847, -1094, 755, -1228, 850, 1231, 297, 624, 
+    1367, -1081, -924, -1477, -92, 777, 127, -1496, 1116, -1103, -434, 839, 
+    1178, 864, 242, 603, 847, 0, 1022, 1231, 355, -1138, 89, 911, 1470, 
+    -1157, 420, -462, 215, 1048, -1399, -397, -222, 841, 827, -1469, -81, 
+    1179, -570, -174, 542, -1191, -976, 954, 639, 20, -1311, -967, -777, 176, 
+    799, -471, -526, -220, -684, -331, 676, 1309, 584, 657, 566, 138, -1146, 
+    567, -1002, 188, -288, 329, -803, -1497, -1361, -1194, 416, -1033, -924, 
+    -1405, -1016, 1216, 1017, 1150, -287, -92, 124, 1498, 1106, -1419, -1356, 
+    1448, -400, 1136, 617, 491, 872, 839, 1480, 284, 545, 515, 215, -44, 310, 
+    236, -417, 1296, -1318, 1478, 1227, -1337, 881, -814, 1417, -986, 422, 
+    1376, -805, -1073, -1490, -984, 1375, 571, -1124, -1467, 700, 1132, -823, 
+    -603, -1310, -1286, 1072, 858, 248, 776, -366, -244, -641, -288, 542, 
+    1044, -457, 1342, 1336, -928, 1300, -706, 739, 895, 1168, -512, 169, 
+    -885, 1489, -1492, -1057, 1464, 934, 1410, -318, 726, 1163, -1305, -374, 
+    510, 1400, 95, -175, -551, -610, -1136, -796, -1256, 791, 734, 1249, 
+    1493, 1161, -1247, 1398, 38, 1424, 241, 383, -423, -658, -549, -1023, 
+    -237, -509, 708, 174, 1390, -745, 1068, -940, 323, -1063, -1004, -833, 
+    1044, -1046, 1417, -228, -16, -255, 1375, 1449, -597, 539, 1082, -1242, 
+    93, 399, 282, -1344, -807, 549, -1476, -767, 25, 506, 287, -293, 621, 
+    1103, -887, -648, 1430, 26, -1072, -580, 85, 104, 853, -985, -1495, 111, 
+    -396, -1482, 179, 601, 16, -769, 421, 348, 859, 1076, 754, 347, 1283, 
+    -601, 11, -1001, -618, -303, -54, -1119, -1104, -963, 873, 1263, 361, 
+    -185, -181, 90, -102, -798, -994, 1023, -1247, 592, 262, -784, 567, -187, 
+    -831, 193, -1187, -1104, -426, -318, 1125, 754, 248, -794, 910, 1068, 
+    1458, -1348, -593, 1224, -860, 485, 288, 1488, -1133, -32, 702, 280, 790, 
+    322, 1215, 696, 1256, 1282, 1376, -1377, -235, 396, -1012, -136, -272, 
+    -365, -501, -1346, 907, -194, 1008, -249, 218, -656, 125, -386, -361, 
+    -390, 1439, -1278, 958, 152, 761, 1356, -1258, 1199, 499, -77, -818, 874, 
+    1294, 772, -1212, -1362, 303, -882, -834, -1384, -1376, -444, -753, 1135, 
+    1347, 940, -469, 478, 1122, 1146, -1394, 775, 676, 330, -1236, 224, 
+    -1237, -609, 1362, 179, 1459, 1377, 229, -254, 1412, 520, 275, 596, -493, 
+    878, 890, 616, -1340, -924, -779, 1357, -55, -368, -214, 67, -681, -591, 
+    -1229, -886, -300, 1449, -1211, -1139, -1028, 374, -469, 1144, -1441, 
+    381, 1315, -116, 36, 390, -976, -740, -584, -647, -827, -615, 144, 614, 
+    -1267, 1358, -68, -1294, 494, 461, -647, 653, -714, -252, -424, 783, 
+    1034, -137, -1498, -8, 826, -1277, 910, 1428, 1431, -538, 110, -365, 
+    -1116, -78, -1057, 1274, 1366, 1074, -1228, -969, -1464, -1286, 1244, 
+    -849, -571, -1085, 1382, -137, 214, -1229, -1352, -1034, 1236, -616, 672, 
+    -1313, -890, -157, -959, -287, -746, -503, 570, -214, -941, 47, -602, 
+    -288, 447, 459, -809, 3, -1422, 976, 118, -884, 571, -98, -639, -575, 
+    804, -1451, -640, -124, 1477, -1207, 556, 833, 1011, 389, 1167, 980, 876, 
+    1115, -843, -1227, -1047, -209, 1415, -65, 574, -196, 1081, -1419, 1, 
+    739, -809, 1147, 595, -16, -338, -706, 37, -305, 221, 316, -1122, -1344, 
+    441, -1282, -204, -479, 144, -695, -57, 428, -1254, -766, 969, 877, -166, 
+    -1206, -928, 842, -40, -343, 1141, 143, 1042, -691, 1427, 1459, -1297, 
+    546, -323, 523, 1476, 946, 590, 169, -498, -179, -1481, 222, -136, 196, 
+    -1415, 1012, -1352, -59, 41, -730, -1142, -1043, 1406, -1289, 818, 21, 2, 
+    421, 1033, -984, 630, 842, 237, -1083, 847, -389, 423, 419, 1350, -348, 
+    -641, -1349, -3, 1490, 286, 1342, 251, 1339, 74, -718, -404, -443, -122, 
+    677, 1491, -847, -1332, -1475, -1175, 1275, -107, -44, -1290, -425, -374, 
+    -997, -454, -965, -840, -153, -11, -1056, -511, -563, 818, -380, 465, 
+    1416, -1420, -264, -134, 1164, -801, -989, 906, 599, 1288, -946, 453, 
+    -906, 956, 1081, -1178, 144, 879, -1226, 1034, 27, 362, 74, -1039, -167, 
+    156, -767, -859, -1000, 217, -1500, -1411, -811, 116, 1167, 565, 1454, 
+    1103, 184, -1010, -1319, 660, 464, 1089, 815, -535, 1197, -1499, 629, 
+    -1132, 279, 637, -737, -312, 214, 837, 886, -615, 713, -1012, 987, -182, 
+    25, 313, -1308, 1499, -1420, -423, 369, -1124, -470, 269, -1009, 91, 107, 
+    -690, 546, -26, 124, 707, 517, 1410, -672, -224, -207, -1287, -1383, 
+    -368, -820, -517, -836, 435, 612, -815, 1111, 630, -218, -1192, -979, 
+    915, 727, 764, 1420, -1166, -1170, -1456, 448, 979, 1439, 67, -1221, 666, 
+    664, 1226, -755, 45, 1420, 1092, 220, 1147, 523, -1232, -915, 786, 460, 
+    626, 373, -366, 1354, -213, -316, -393, -232, 88, 1463, 351, -560, 1365, 
+    1300, -429, 759, -698, -371, -1458, -329, -1173, 246, 127, 535, 979, -83, 
+    1112, 697, -711, 1433, 285, 728, 1068, -1060, -1165, -19, -438, -684, 
+    252, -1101, 1015, -1043, -1135, -1481, 1261, 1317, 797, -338, -586, 1054, 
+    -263, -163, 181, -354, 419, 626, 1477, 1378, 751, 120, 80, 81, 84, 87, 
+    90, 92, 95, 99, 101, 104, 107, 110, 113, 116, 118, 121, 124, 127, 130, 
+    133, 130, 591, -906, -1383, 597, -1299, -802, 717, -103, -147, 146,
+  723, -31, -1226, 1198, -1118, 1386, 623, 641, 958, 49, -263, -214, 56, 
+    1317, 763, 709, 1031, -746, -586, -1157, 840, -1270, -225, 14, 1211, 
+    -1052, 1142, 24, 1289, -1182, -941, 722, 1148, -20, -1218, -1325, 676, 
+    804, 462, 1194, -1390, 44, -260, -270, 54, -611, -726, -891, 1004, 1122, 
+    -1151, 113, -716, -531, 460, -824, -521, 1356, 1046, -654, 846, 730, 
+    -1465, -876, -914, 1099, -1342, -796, -865, -1105, 1169, -1437, -608, 
+    -453, -1110, 537, 580, -1075, 624, 1303, 1496, -1062, -177, 318, -983, 
+    -396, -1172, -1253, -811, -64, 384, 1108, -1321, -806, -1486, -825, -166, 
+    826, -984, -1033, -560, 1302, -453, -238, -498, 609, 1496, -427, 1399, 
+    -379, -612, -619, -146, 467, 1430, -1078, -666, 1035, 413, 767, -850, 
+    -1364, -1231, 936, 419, 122, -1068, -995, 1349, -1054, -895, -482, 497, 
+    973, 1124, -1253, -835, 307, 884, 1036, -774, -1111, -1108, -1436, 1232, 
+    1258, 1289, -1184, -1290, -157, 397, -216, 23, 112, 1047, -1099, 1113, 
+    -1287, 350, 793, -664, -1223, -1223, -227, -802, -682, -885, -870, 756, 
+    985, -265, -701, -1185, -1211, 1346, -202, -779, -59, -770, 43, -1366, 
+    -972, -162, -635, -681, 417, -1277, 806, 804, -552, -623, -639, -1121, 
+    -208, 124, -463, -1185, -707, -977, 828, -1281, 1240, 1266, -1282, 1429, 
+    143, -33, 421, 1257, 955, -1038, 729, 1346, -513, -779, -1163, -1173, 
+    -1320, -7, -189, 993, -1339, -599, 19, 188, -836, 135, 404, 220, 193, 
+    596, -742, 349, -458, 1456, 1411, -1467, 579, 1040, 361, 452, 15, -583, 
+    626, 1145, -719, -922, 526, -95, -267, 382, -1149, -1315, -496, 499, 469, 
+    -235, 320, -317, -466, 1232, -628, -291, -1015, 1420, 1319, -1469, 826, 
+    1076, 1360, -173, -258, 771, -93, 79, 645, 1399, -270, -321, -1375, 1118, 
+    -399, 326, 844, -820, -271, 1019, -721, 504, -185, 1108, 1445, 306, 159, 
+    564, 831, -1050, 14, 935, 1111, -1237, 935, -1153, -910, 192, 1308, -909, 
+    -578, -134, -705, -1065, 1316, -781, 174, -33, -1172, -627, 861, 668, 
+    1010, -553, 374, 461, 1232, -131, 1016, -1173, -949, 1040, 1214, -965, 
+    -464, -124, -388, -1225, -846, -453, 295, -718, 1220, -1303, 65, 250, 
+    362, 282, -734, 1325, 913, -970, -995, -20, 1454, -55, 559, 269, 729, 92, 
+    -1146, -397, 18, -1109, 150, -1468, -746, -98, 86, -653, -1212, 895, 649, 
+    532, -642, -792, -980, -1376, -402, -870, -1317, -1172, -901, 1497, 
+    -1386, 478, -457, 502, -146, -392, 276, -1403, 301, 987, 1209, -181, 348, 
+    -705, -659, -1275, -891, 1386, -795, -711, -367, 1137, -22, -1335, -418, 
+    -1213, -1386, 941, -1372, -1195, -1372, -1103, 641, -498, 140, -683, 684, 
+
+............
+............
+

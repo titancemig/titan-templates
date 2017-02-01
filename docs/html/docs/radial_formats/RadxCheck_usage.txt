@@ -1,0 +1,52 @@
+Usage: RadxCheck [args as below]
+Options:
+
+  [ -h ] produce this list.
+
+  [ -ag ] aggregate sweep files into volume on read.
+     Files with the SAME VOLUME NUMBER in the name are aggregated.
+     Applies to CfRadial and DORADE sweep files.
+
+  [ -check_ngates_constant ] check that ngates are constant
+     Print message if ngates are NOT constant in volume
+
+  [ -check_ngates_vary ] check that ngates vary in the volume
+     Print message if ngates do NOT vary in volume
+
+  [ -d, -debug ] print debug messages
+
+  [ -end "yyyy mm dd hh mm ss"] end time
+     Sets mode to ARCHIVE
+
+  [ -f, -paths ? ] set file paths
+     Sets mode to FILELIST
+
+  [ -indir ? ] set input directory
+
+  [ -start "yyyy mm dd hh mm ss"] start time
+     Sets mode to ARCHIVE
+
+  [ -v, -verbose ] print verbose debug messages
+
+  [ -vv, -extra ] print extra verbose debug messages
+
+
+NOTE: You do not need to use the params option (see below).
+      If no params are specified, you deal with the whole file.
+
+TDRP args: [options as below]
+   [ -params path ] specify params file path
+   [ -check_params] check which params are not set
+   [ -print_params [mode]] print parameters
+     using following modes, default mode is 'norm'
+       short:   main comments only, no help or descr
+                structs and arrays on a single line
+       norm:    short + descriptions and help
+       long:    norm  + arrays and structs expanded
+       verbose: long  + private params included
+       short_expand:   short with env vars expanded
+       norm_expand:    norm with env vars expanded
+       long_expand:    long with env vars expanded
+       verbose_expand: verbose with env vars expanded
+   [ -tdrp_debug] debugging prints for tdrp
+   [ -tdrp_usage] print this usage

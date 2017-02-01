@@ -1,0 +1,94 @@
+TITAN RELEASE NOTES - 2006/09/04
+================================
+
+1. Release notes added.
+-----------------------
+
+From this date, a release notes file will detail any significant
+changes to the distribution.
+
+
+2. Added check_titan_libs script.
+---------------------------------
+
+After running build_titan_libs, you can run the check_titan_libs
+script. This will print out error messages for any libraries which
+were not successfully installed.
+
+
+3. Added check_titan_apps script.
+---------------------------------
+
+After running build_titan_apps, you can run the check_titan_apps
+script. This will print out error messages for any applications which
+were not successfully installed.
+
+
+4. Added set_build_env file.
+----------------------------
+
+The file contains the environment variables which are used by the build.
+
+You can set this up manually with:
+
+  source set_build_env
+
+You can then execute parts of the build individually, to handle 
+problems with specific libraries or applications.
+
+For example, suppose the Mdv library did not install. You can:
+
+  source ~/rap/set_build_env
+  cd ~/rap/libs/Mdv
+  make opt install
+
+Then, you can check the installed libraries as follows:
+
+  cd ~/rap
+  check_titan_libs
+
+Or suppose the MdvMerge2 application did not install. You can
+
+  source ~/rap/set_build_env
+  cd ~/rap/apps/mdv_utils/src/MdvMerge2
+  make opt install
+
+Then, you can check the installed applications as follows:
+
+  cd ~/rap
+  check_titan_apps
+
+
+5. New applications.
+--------------------
+
+(a) Read in Gematronik XML radar volume, convert to Dsr:
+
+    ~/rap/apps/ingest/src/GemVolXml2Dsr
+
+(b) Merge radar and lightning data into a pseudo-dbz or pseudo-vil grid:
+
+    ~/rap/apps/awc/src/combine_ltg_radar
+
+
+6. Building CIDD without imlib2.
+--------------------------------
+
+I you are not able to install imlib2, which is required by the CIDD
+display application (apps/cidd/src/CIDD), you can build a TITAN
+version instead:
+
+  apps/titan/src/CIDD_titan
+
+This app does not require imlib2. The only difference is the manner
+in which graphics are saved out for webcontent generation. CIDD_titan
+produces .xwd files (X window dump) which must then be converted to
+image formats such as .jpg and .gif using convert. CIDD has the option
+of generating image files directly.
+
+7. Build scripts.
+-----------------
+
+Fixed a bug in the tar script, so that all build scripts are correctly
+copied to the top level directory.
+

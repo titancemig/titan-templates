@@ -1,0 +1,259 @@
+<html>
+<head>
+<title>RADX CIDD support</title>
+</head>
+
+<!-- <BODY BGCOLOR="gray"> -->
+
+<H1><A NAME="top">Radx CIDD support</A></H1>
+<P><HR><P>
+
+<H2>Overview</H2><A NAME="formats">
+<P>
+
+<p>
+The <a href="http://www.rap.ucar.edu/CIDD/user_manual/CIDD_manual.html">CIDD</a> display is widely used at NCAR for viewing gridded data, both in Cartesian and radial formats.
+
+<p>
+CIDD generally reads and displays gridded data from MDV files. See the <a href="http://www.ral.ucar.edu/projects/titan/docs/">TITAN documentation</a> for more details on MDV. CIDD can read the data directly from the MDV files. However, in many situations the MDV data is served to CIDD via the DsMdvServer application.
+
+<p>
+A secondary server application, the NcMdvServer, provides an on-the-fly translation service between netCDF and MDV file formats.
+
+<p>
+The NcMdvServer has been upgraded to handle all 4 radial data types in common use at NCAR, namely:
+<UL>
+<LI><a href = "index.html#cfradial">CfRadial:</a> CF-compliant netCDF (new)
+<LI><a href = "index.html#dorade">Dorade:</a> Doppler Radar Data Exchange Format
+<LI><a href = "index.html#uf">UF:</a>Universal Format
+<LI><a href = "index.html#foray">FORAY netCDF:</a> mainly used for TIMREX field experiment
+</UL>
+
+<p>
+To view these data in CIDD, it is no longer necessary to convert the data to MDV. Instead, the NcMdvServer can serve the data to CIDD on-the-fly.
+
+<p>
+You will need to ensure that both the DsMdvServer and NcMdvServer are running on the host on which the data is stored. Alternatively, if the DsServerMgr (server manager) is running, it will start up the required servers.
+
+<p><a href = "index.html">Back to Radial docs</a>&nbsp;&nbsp;&nbsp;<a href = "../">Back to TITAN docs</a>
+
+<hr>
+
+<!-- ----------------- NAMING CONVENTIONS --------------   -->
+
+<P>
+<h2><a name = "naming">Naming conventions</a></h2>
+
+<p>
+In order to view radial data directly with CIDD, you need to ensure that the directory structure and file names comply with the required naming conventions.
+
+<p>
+The directory naming rules are:
+<p>
+
+<UL>
+<LI>Each data set should reside in a separate directory
+<LI>The data for each day should reside in a sub-directory named
+     <code><pre>    yyyymmdd</pre></code>
+<LI>The file name should contain the date and time - see below
+</UL>
+
+<p>
+The files should either be named using the standard DORADE file naming convention, or should contain the date and time in a standard format.
+
+<UL>
+<LI><a href="#cfradial_naming">CfRadial naming convention</a>
+<LI><a href="#dorade_naming">DORADE naming convention</a>
+<LI><a href="#uf_naming">UF naming convention</a>
+<LI><a href="#foray_naming">Foray netCDF naming convention</a>
+</UL>
+
+<p>
+The following show examples of full paths:
+
+<UL>
+<LI>/data/cfradial/netcdf4/20080604/cfrad.20080604_002217.nc: CfRadial file
+<LI>/data/dorade/timrex/20080604/swp.1080604001951.SPOLRVP8.0.4.7_SUR_v036: DORADE file
+<LI>/data/uf/timrex/20080604/20080604_002217_SPOLRVP8_SUR_v036.uf: UF file
+<LI>/data/foraync/timrex/20080605/ncswp_SPOL_20080605_235100.000_v054_s007_009.1_SUR_.nc: FORAY netCDF file
+</UL>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- CF RADIAL NAMING CONVENTION --------------   -->
+
+<P>
+<h3><a name = "cfradial_naming">CfRadial data naming convention</a></h3>
+
+<p>
+CfRadial files have the following naming convention:
+
+<code><pre>    *cfrad*yyyymmdd_hhmmss*.nc</pre></code>
+
+where * refers to any character string.
+
+<p>
+For example, the file:
+
+<code><pre>    cfrad.20080604_002217.nc</pre></code>
+
+<p>
+has the following properties:
+
+<UL>
+<LI>year: 2008
+<LI>month: 06
+<LI>day: 04
+<LI>hour: 00
+<LI>min: 22
+<LI>sec: 17
+</UL>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- DORADE NAMING CONVENTION --------------   -->
+
+<P>
+<h3><a name = "dorade_naming">DORADE naming convention</a></h3>
+
+<p>
+The standard DORADE naming convention is:
+
+<code><pre>    swp.yyymmddhhmmss.radarname.millisecs.fixedAngle_scantype_vnum</pre></code>
+
+<p>where yyy = year - 1900
+
+<p>
+For example, the file:
+
+<code><pre>    swp.1080604001951.SPOL.238.4.7_SUR_v036</pre></code>
+
+<p>
+has the following properties:
+
+<UL>
+<LI>year: 2008
+<LI>month: 06
+<LI>day: 04
+<LI>hour: 00
+<LI>min: 19
+<LI>sec: 51
+<LI>radar name: SPOL
+<LI>millisec: 238
+<LI>elevation angle: 4.7
+<LI>scan strategy: SUR (surveillance)
+<LI>volume number: 036
+</UL>
+
+<p>
+The scan strategy can take the following values:
+
+<UL>
+<LI>SUR: surveillance scan
+<LI>PPI: sector scan
+<LI>RHI: RHI scan
+<LI>IDL: idle
+<LI>SUN: sun scan
+</UL>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- UF NAMING CONVENTION --------------   -->
+
+<P>
+<h3><a name = "uf_naming">UF data naming convention</a></h3>
+
+<p>
+Universal Format files should have the following naming convention:
+
+<code><pre>    *yyyymmdd_hhmmss*.uf</pre></code>
+
+where * refers to any character string.
+
+<p>
+For example, the file:
+
+<code><pre>    spol_20080604_002217_v064.uf</pre></code>
+
+<p>
+has the following properties:
+
+<UL>
+<LI>year: 2008
+<LI>month: 06
+<LI>day: 04
+<LI>hour: 00
+<LI>min: 22
+<LI>sec: 17
+</UL>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ----------------- FORAY netCDF NAMING CONVENTION --------------   -->
+
+<P>
+<h3><a name = "foray_naming">FORAY netCDF naming convention</a></h3>
+
+<p>
+The standard FORAY netCDF naming convention is:
+
+<code><pre>    ncswp_radar_yyymmdd_hhmmss.msecs_vnum_snum_fixedAngle_scan_.nc</pre></code>
+
+<p>
+For example, the file:
+
+<code><pre>    ncswp_SPOL_20080605_235100.123_v054_s007_009.1_SUR_.nc</pre></code>
+
+<p>
+has the following properties:
+
+<UL>
+<LI>radar name: SPOL
+<LI>year: 2008
+<LI>month: 06
+<LI>day: 05
+<LI>hour: 23
+<LI>min: 51
+<LI>sec: 00
+<LI>millisec: 123
+<LI>volume number: 054
+<LI>sweep number: 007
+<LI>elevation angle: 9.1
+<LI>scan strategy: SUR (surveillance)
+</UL>
+
+<p>
+The scan strategy can take the following values:
+
+<UL>
+<LI>SUR: surveillance scan
+<LI>PPI: sector scan
+<LI>RHI: RHI scan
+<LI>IDL: idle
+<LI>SUN: sun scan
+</UL>
+
+<p><a href = "#top">Back to top</a>
+
+<hr>
+
+<!-- ------------------------------------------------------------   -->
+
+<hr>
+
+Author:
+<cite>Mike Dixon</cite><br>
+EOL/RAL, NCAR, P.O.Box 3000, Boulder, CO, 80307-3000<br>
+July 2010
+
+</body>
+</html>
+

@@ -1,0 +1,121 @@
+Usage: RadxPrint [args as below]
+Options:
+
+  [ -h ] produce this list.
+
+  [ -ag ] aggregate sweep files into volume on read
+          applies to DORADE and CFRADIAL sweep files
+
+  [ -ang ? ] set single fixed angle
+             or minimum - see '-ang_max'
+
+  [ -ang_max ? ] set max fixed angle
+                 use '-ang' for setting minimum
+
+  [ -apply_georefs] apply georeference corrections on read.
+    For moving platforms, measured georeference information is sometimes
+    available. If so, this is applied and appropriate corrections made.
+    Earth-centric azimuth and elevation angles will be computed.
+
+  [ -change_lat_sign] change the sign of the radar latitude
+    Useful for RAPIC files that always have a positive latitude.
+
+  [ -const_ngates ] force number of gates constant for all rays
+                    Added gates will be filled with missing values
+
+  [ -data ] print field data
+
+  [ -d, -debug ] print debug messages
+
+  [ -dir ? ] Directory if searching by time
+
+  [ -dorade_format ] print format of dorade structs
+
+  [ -f ? ] set file path, see also -path
+
+  [ -field ? ] Specify particular field
+     Specify name or number
+     Use muptiple -field args for multiple fields
+     If not specified, all fields will be printed
+
+  [ -margin ? ] time_margin (secs): defaults to 3600
+     applies to all time search modes except latest
+
+  [ -meta_only ] only read sweep and field meta data
+     rays and data will not be read
+
+  [ -mode ? ] mode if searching by time
+     Options: latest, closest, first_before, first_after
+
+  [ -native ] print in native format
+              no translation into Radx
+
+  [ -no_trans ] ignore rays with antenna transition flag set
+
+  [ -path ? ] set file path, see also -f
+
+  [ -preserve_sweeps ] preserve sweep details as they are in file.
+     This generally applies to NEXRAD data - by default we
+     consolidate sweeps by combining split-cut sweeps
+     into a single sweep.
+     If this flag is true, we leave the sweeps unchanged.
+
+  [ -radar_num ? ] set radar number
+    Applies to NOAA HRD data. LF radar = 1, TA radar = 2
+    Generally not needed
+
+  [ -rays ] print ray meta data
+
+  [ -ray_table ] print table of ray properties
+
+  [ -rem_miss ] remove rays in which data at all gates and
+                for all fields is missing
+
+  [ -rem_short ] remove short range rays
+                 Remove NEXRAD short-range Doppler sweeps
+
+  [ -rem_long ] remove long range rays
+                Remove NEXRAD long-range Non-Doppler sweeps
+
+  [ -rem_trans ] remove rays with antenna transitions
+
+  [ -summary ] print summary of each ray
+
+  [ -sweep ? ] set single sweep number
+               or minimum - see '-sweep_max'
+
+  [ -sweep_max ? ] set max sweep number
+               use '-sweep' for setting minimum
+
+  [ -time ? ] specify search time
+     Format is "YYYY MM DD HH MM SS"
+
+  [ -trim_sur ] trim surveillance sweeps to 360 degrees
+                Remove extra rays in each surveillance sweep
+
+  [ -v, -verbose ] print verbose debug messages
+  [ -vv, -extra ] print extra verbose debug messages
+
+  [ -vol_fields ] load up volume fields from rays
+     If not set, fields are left managed by rays
+
+
+NOTE: You do not need to use the params option (see below).
+      If no params are specified, you deal with the whole file.
+
+TDRP args: [options as below]
+   [ -params/--params path ] specify params file path
+   [ -check_params] check which params are not set
+   [ -print_params [mode]] print parameters
+     using following modes, default mode is 'norm'
+       short:   main comments only, no help or descr
+                structs and arrays on a single line
+       norm:    short + descriptions and help
+       long:    norm  + arrays and structs expanded
+       verbose: long  + private params included
+       short_expand:   short with env vars expanded
+       norm_expand:    norm with env vars expanded
+       long_expand:    long with env vars expanded
+       verbose_expand: verbose with env vars expanded
+   [ -tdrp_debug] debugging prints for tdrp
+   [ -tdrp_usage] print this usage

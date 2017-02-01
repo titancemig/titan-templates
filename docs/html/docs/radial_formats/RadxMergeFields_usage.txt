@@ -1,0 +1,79 @@
+Usage: RadxMergeFields [args as below]
+Options:
+
+  [ -h ] produce this list.
+
+  [ -ag ] aggregate sweep files into volume on read/n          applies to DORADE sweep files
+
+  [ -cfradial ] convert to cfradial (the default)
+
+  [ -d, -debug ] print debug messages
+
+  [ -dorade ] convert to dorade
+
+  [ -elev ? ] set single elevation
+              or minimum - see '-elev_max'
+
+  [ -elev_max ? ] set max elevation
+                  use '-elev' for setting minimum
+
+  [ -end "yyyy mm dd hh mm ss"] end time
+           Sets mode to ARCHIVE
+
+  [ -f, -paths ? ] set file paths
+           Sets mode to FILELIST
+
+  [ -field ? ] Specify particular field
+     Specify name or number
+     Use multiple -field args for multiple fields
+     If not specified, all fields will be used
+
+  [ -native ] output in host-native byte ordering
+              instead of swapping into big-endian
+
+  [ -outdir ? ] set output directory
+
+  [ -out_end ? ] compute output path using end time
+                 default is to use both start and end times
+
+  [ -out_start ? ] compute output path using start time
+                  default is to use both start and end times
+
+  [ -primary_dir ? ] set primary input directory
+
+  [ -secondary_dir ? ] set secondary input directory
+
+  [ -start "yyyy mm dd hh mm ss"] start time
+           Sets mode to ARCHIVE
+
+  [ -sweep ? ] set single sweep number
+               or minimum - see '-sweep_max'
+
+  [ -sweep_max ? ] set max sweep number
+                   use '-sweep' for setting minimum
+
+  [ -uf ] convert to universal format
+
+  [ -v, -verbose ] print verbose debug messages
+  [ -vv, -extra ] print extra verbose debug messages
+
+
+NOTE: You do not need to use the params option (see below).
+      If no params are specified, you deal with the whole file.
+
+TDRP args: [options as below]
+   [ -params path ] specify params file path
+   [ -check_params] check which params are not set
+   [ -print_params [mode]] print parameters
+     using following modes, default mode is 'norm'
+       short:   main comments only, no help or descr
+                structs and arrays on a single line
+       norm:    short + descriptions and help
+       long:    norm  + arrays and structs expanded
+       verbose: long  + private params included
+       short_expand:   short with env vars expanded
+       norm_expand:    norm with env vars expanded
+       long_expand:    long with env vars expanded
+       verbose_expand: verbose with env vars expanded
+   [ -tdrp_debug] debugging prints for tdrp
+   [ -tdrp_usage] print this usage

@@ -1,0 +1,16 @@
+TITAN RELEASE NOTES - 2008/12/02
+================================
+
+1. Bug fixes to run under gcc/g++ 4.3
+-------------------------------------
+
+A number of bug fixes were made so that TITAN will run correctly
+under the current versions of the LINUX operating systems, such
+as Ubuntu 8.10, Fedora 9 and Debian lenny.
+
+2. FORTRAN compiler changed.
+----------------------------
+
+For grib and related support, oyou need to make sure
+gfortran is installed.
+
