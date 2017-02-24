@@ -2,7 +2,7 @@
 # begin.php
 
 # web root directory
-$wroot = "http://www.ral.ucar.edu/projects/titan";
+$wroot = "http://front.eol.ucar.edu/git/lrose-titan/docs/html/";
 
 # Find the current section from the URI, based on directory name.
 $sections = array(
