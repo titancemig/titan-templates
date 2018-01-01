@@ -5,7 +5,7 @@
 # ~/projDir/bin
 #
 
-foreach dir (~/rap/bin* $RAP_BIN_DIR)
+foreach dir ($RAP_BIN_DIR)
   if (-d $dir) then
     cd $dir
     foreach file (*)
