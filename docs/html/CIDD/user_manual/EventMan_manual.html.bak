@@ -1,0 +1,70 @@
+<html>
+
+<head>
+
+<title>Configurable Interactive Data Display (CIDD) Event Manager User  Manual</title>
+
+<meta http-equiv="Content-Type" content="text/html">
+
+</head>
+
+<!-- ******************************************************************** --><body bgcolor="#FFFFFF">
+
+ <center>
+    <h1> CIDD Event Manager Manual</h1>
+</center>
+<HR>
+<A NAME="Doc_Top"></a>
+<CENTER>
+<TABLE>
+<TR>
+   <TD ALIGN=CENTER> <IMG USEMAP="#Left_map" SRC="images/EventMan_screen.png"> </TD>
+</TR>
+</TABLE>
+</CENTER>
+
+<h2> <a name="Summary"> Summary  </a> <font size=2><a href="#Doc_Top">Back to top</a></font></h2>
+<p> Event Manager is a tool which is used to record and retrieve
+weather events. A list of weather events is presented in a list. Specific
+information about the selected event is displayed and the user may update
+or add to the informatioas and  save the result to disk. Event Manager
+works in conjunction with the WSDM displays and the data scrubbing
+utilities; Event Manager can be used to send the display to the chosen
+event, and one a new event has been added and saved, the data for that
+event is retained indefinately. WSDM systems typically have 30 days
+of history stored on the local display. <b>One has to add a new event
+within 30 days of the event date or the event's data will be automatically
+scrubed off your disk forever. </b>
+
+<h2> <a name="goto"> GOTO Event </a> <font size=2><a href="#Doc_Top">Back to top</a></font></h2>
+<p> Selecting GOTO Event sends the WSDM display to the start time of
+the weather event.
+
+<h2> <a name="add"> ADD </a> <font size=2><a href="#Doc_Top">Back to top</a></font></h2>
+<p> Selecting ADD creates a new, blank event. By default Event Manager
+chooses a start time, end time and picks a default title. Select the
+new event from the list and edit the fields as desired. Choosing <a
+href="#save"> Save </a> commits the changes to disk and prevents data
+in the new event from being erased.
+
+<h2> <a name="delete"> Delete </a> <font size=2><a href="#Doc_Top">Back to top</a></font></h2>
+<p> Selecting Delete removes the weather event from the list. This
+change is not commited to disk until the user selects <a href="#save">
+Save </a>. <em> Note: Once an event has been removed from the event list
+and saved, the data for this time period will then be scrubbed from this
+disk of it is more than 30 days old.  This data will not re-appear once
+it has been removed from the list. Be sure you have no need for an older
+event, before you remove it.
+
+<h2> <a name="Help"> Help </a> <font size=2><a href="#Doc_Top">Back to top</a></font></h2>
+<p> Selecting Help brings up this document.
+
+<h2> <a name="save"> Save </a> <font size=2><a href="#Doc_Top">Back to top</a></font></h2>
+<p> Selecting Save commits changes to disk. The Data scrubbing utiltiy;
+<em>Janitor</em> uses the information saved onto disk to decide what
+data to save.  user selects <a href="#save"> Save </a>.
+
+<h2> <a name="close"> Close </a> <font size=2><a href="#Doc_Top">Back to top</a></font></h2>
+<p> Selecting Close iconifys the application. Event Manager continues to
+run  and can be re-opened by clicking on the icon or on the task button
+in the task bar.
