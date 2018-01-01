@@ -44,14 +44,13 @@ setenv RAP_SHARED_DOC_DIR $RAP_DOC_DIR
 
 # --- OTHER BUILD SETTINGS
 
-setenv QTDIR /usr/local/qt4
-
+setenv QTDIR /usr/lib64/qt4
 setenv FC gfortran
 setenv GCC_WARNINGS -Wall
 
 # --- LD library path --
 
-setenv LD_LIBRARY_PATH $QTDIR/lib:
+setenv LD_LIBRARY_PATH $QTDIR/lib:$RAP_LIB_DIR
 
 # --- NCAR GRAPHICS ---
 
@@ -81,8 +80,6 @@ setenv LDATA_FMQ_ACTIVE true
 
 setenv DS_COMM_TIMEOUT_MSECS 60000
 setenv DS_PING_TIMEOUT_MSECS 20000
-
-setenv PAPER_SIZE 500x700+60+60
 
 # --- site info --- 
 
