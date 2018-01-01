@@ -294,9 +294,9 @@ Rview.ac_posn_realtime_file: $(DATA_DIR)/ascii/ac_posn/realtime
 Rview.ac_posn_fwd_time_margin: 300
 Rview.ac_posn_back_time_margin: 300
 Rview.ac_posn_n_ident: 3
-Rview.ac_posn_idents: ZJRA ZJRB ZCAN
-Rview.ac_posn_colors: white orange cyan
-Rview.ac_posn_linestyles: 1 100.0 0.0, 1 4.0 2.0, 1 1.0 4.0, 1 1.0 3.0, 1 4.0 1.0
+Rview.ac_posn_idents: ZLTK ZJRA ZJRB
+Rview.ac_posn_colors: green orange cyan
+Rview.ac_posn_linestyles: 1 100.0 0.0, 1 4.0 2.0, 1 1.0 4.0
 Rview.ac_posn_max_speed_kts: 250
 Rview.ac_posn_max_bad_points: 2
 
@@ -315,6 +315,7 @@ Rview.ejectable_icon_size_km: 0.3
 Rview.end_burn_color: gold
 Rview.burn_in_place_color: blue
 Rview.end_burn_and_bip_color: magenta
+Rview.dry_ice_color: white
 
 # line width varies with the number of flares burning.
 # If width_per_flare is 1, line width will be number of burning flares.
