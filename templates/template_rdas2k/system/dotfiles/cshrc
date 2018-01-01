@@ -1,0 +1,178 @@
+#############################################
+# .cshrc file
+#
+# Titan
+#
+# Mike Dixon April 2004
+#############################################
+
+# --- basic --- 
+
+umask 002
+setenv TAPE /dev/st0
+setenv PRINTER lp
+
+# --- runtime --- 
+
+setenv PROJ_DIR $HOME/projDir
+setenv TITAN_HOME $PROJ_DIR
+setenv DATA_DIR $PROJ_DIR/data
+setenv RAP_DATA_DIR $DATA_DIR
+setenv PROCMAP_HOST localhost
+setenv DATA_MAPPER_ACTIVE true
+setenv LDATA_FMQ_ACTIVE true
+setenv DATA_DISTRIB_LOG_DIR $PROJ_DIR/logs/distrib
+setenv ERRORS_LOG_DIR $PROJ_DIR/logs/errors
+setenv RESTART_LOG_DIR $PROJ_DIR/logs/restart
+setenv DS_COMM_TIMEOUT_MSECS 60000
+setenv PAPER_SIZE 500x700+60+60
+setenv CVSUSER titan5
+
+# --- radar info --- 
+
+if (-f $PROJ_DIR/system/params/site_params) then
+  source $PROJ_DIR/system/params/site_params
+endif
+
+# --- local additions --- 
+
+if (-f $HOME/.cshrc.local) then
+  source $HOME/.cshrc.local
+endif
+setenv CVSROOT :pserver:${CVSUSER}@localhost:/cvs
+
+# --- build ---
+
+# setenv GCC_WARNINGS -Wall
+setenv HOST_OS LINUX
+
+setenv WORK $HOME/rap
+
+setenv RAP_MAKE_INC_DIR $WORK/make_include
+setenv RAP_MAKE_BIN_DIR $WORK/make_bin
+
+setenv RAP_INC_DIR $WORK/include
+setenv RAP_LIB_DIR $WORK/lib
+setenv RAP_BIN_DIR $WORK/bin
+setenv RAP_MAN_DIR $WORK/man
+setenv RAP_DOC_DIR $WORK/doc
+
+setenv RAP_SHARED_INC_DIR $RAP_INC_DIR
+setenv RAP_SHARED_LIB_DIR $RAP_LIB_DIR
+setenv RAP_SHARED_BIN_DIR $RAP_BIN_DIR
+setenv RAP_SHARED_MAN_DIR $RAP_MAN_DIR
+setenv RAP_SHARED_DOC_DIR $RAP_DOC_DIR
+
+setenv RAP_INSTALL_DIR $WORK
+setenv RAP_INST_LIB_DIR $RAP_INSTALL_DIR/lib
+setenv RAP_INST_BIN_DIR $RAP_INSTALL_DIR/bin
+setenv RAP_INST_INC_DIR $RAP_INC_DIR
+
+setenv JAVA_HOME /opt/j2sdk
+setenv RAP_INST_JAVA_DIR $RAP_INSTALL_DIR/java/dist/lib
+
+setenv CLASSPATH .:${RAP_INST_JAVA_DIR}:${WORK}/java/src:${WORK}/java/src/jdom.jar
+
+# --- netcdf ---
+#
+# setenv CC /usr/bin/gcc
+# setenv CPPFLAGS '-DNDEBUG -Df2cFortran'
+# setenv CFLAGS -O
+# setenv FC /usr/bin/g77
+# setenv FFLAGS '-O -Wno-globals'
+# setenv CXX /usr/bin/g++
+
+# --- Path ---
+#
+# Assemble path to include all scripts directories
+# then projDir/bin, then the rest
+
+set path = ($RAP_INST_BIN_DIR ~/bin \
+	    $RAP_BIN_DIR $JAVA_HOME/bin \
+	    /usr/java/bin /usr/local/bin /usr/local/sbin \
+	    /usr/X11R6/bin /usr/bin /usr/sbin /bin /sbin . )
+
+if (-d $PROJ_DIR) then
+  /bin/mkdir -p $PROJ_DIR/junk
+  foreach dir ($PROJ_DIR/*)
+    if (-d $dir/scripts) then
+      set path = ($path $dir/scripts)
+    endif
+  end
+endif
+
+# --- Interactive shells only - aliases etc. ---
+
+if ($?prompt) then
+
+  alias sc source ~/.cshrc
+
+  alias setprompt 'set prompt="(`hostname`) `basename $cwd` ! % "'
+  alias cd 'cd \!*;setprompt; echo $cwd'
+  alias push 'pushd \!*; cd .'
+  alias pop 'popd; cd .'
+
+  alias ppl '\!* -print_params | less'
+
+  alias ls 'ls -F'
+  alias dir 'ls -lgF \!* | more'
+  set history=100
+  alias h history 40
+
+  alias rm 'rm -i'
+  alias mv 'mv -i'
+  alias cp 'cp -i' 
+
+  alias df 'df -k'
+  set filec
+  set fignore = (.o .ln)
+
+  alias catw 'cat `which \!*`'
+  alias lessw 'less `which \!*`'
+  alias editw 'emacs -nw `which \!*`'
+
+  # stty intr 
+  # stty erase 
+  # set ttystr = `tty`
+  # set host = `hostname | sed -e 's/\..*$//'`
+
+  alias ensc 'enscript -2r -fCourier7'
+
+  # limit coredumpsize unlilmited
+
+  alias ppm 'print_procmap -hb -up -status'
+  alias pdm 'PrintDataMap -all -relt -lreg'
+  alias pcheck 'procmap_list_check -proc_list ~/projDir/control/proc_list'
+
+  #
+  # CVS
+  #
+
+  alias xx 'xrdb ~/.Xdefaults'
+  alias rcvs 'cvs -d :pserver:${CVSUSER}@localhost:/cvs \!*'
+  alias cvsforward 'ssh -a -x -C -R 2401:localhost:2401'
+  alias cvsin 'ssh -a -x -C -L 2401:cvs:2401'
+  alias cvsout 'ssh -a -x -C -R 2401:cvs:2401'
+  alias ssh 'ssh -X'
+  alias relay 'xrdb ~/.Xdefaults; ssh ${CVSUSER}@relay.rap.ucar.edu'
+
+  # working directories
+
+  alias cda 'cd $WORK/apps'
+  alias cdl 'cd $WORK/libs'
+  alias cdi 'cd $WORK/incs'
+  alias cdt 'cd $WORK/apps/titan/src'
+  alias cdta 'cd $WORK/apps/titan_analysis/src'
+  alias cdd 'cd $WORK/apps/didss/src'
+  alias cdds 'cd $WORK/apps/dsserver/src'
+  alias cdh 'cd $WORK/apps/hydro/src'
+  alias cdin 'cd $WORK/apps/ingest/src'
+  alias cdrdas 'cd $WORK/java/src/edu/ucar/rap/titan/RdasControl'
+  alias cdjrp 'cd $WORK/java/src/edu/ucar/rap/jrp'
+
+endif
+
+# --- Reset the prompt ---
+
+cd .
+
