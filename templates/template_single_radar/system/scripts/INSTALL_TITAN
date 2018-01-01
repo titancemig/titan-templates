@@ -4,8 +4,8 @@
 #
 # script to install TITAN system
 #
-# Mike Dixon, RAP, NCAR, Boulder, CO, USA
-# Jan 2004
+# Mike Dixon, EOL, NCAR, Boulder, CO, USA
+# Jan 2018
 #
 #--------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ echo "*********************************************************************"
 echo
 echo "  NOTES:"
 echo
-echo "    TITAN distribution must reside in $HOME/rap"
+echo "    TITAN distribution must reside in $HOME/git/lrose-titan"
 echo "    TITAN will be installed in project directory $HOME/projDir"
 echo
 echo "*********************************************************************"

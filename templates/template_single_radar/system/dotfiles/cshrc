@@ -21,7 +21,7 @@ setenv PRINTER lp
 
 setenv LANG C
 setenv HOST_OS LINUX
-setenv INSTALL_DIR $HOME/rap
+setenv INSTALL_DIR $HOME/lrose
 setenv RAP_MAKE_INC_DIR $INSTALL_DIR/make_include
 setenv RAP_MAKE_BIN_DIR $INSTALL_DIR/make_bin
 setenv RAP_INC_DIR $INSTALL_DIR/include
@@ -110,7 +110,7 @@ if ($?INSTALL_DIR) then
   endif
 endif
 
-set path = ($path ~/bin \
+set path = ($path ~/lrose/bin ~/bin \
         /opt/local/bin \
 	$JAVA_HOME/bin $ANT_HOME/bin \
 	$NCARG_ROOT/bin \
