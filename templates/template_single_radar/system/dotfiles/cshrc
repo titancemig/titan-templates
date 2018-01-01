@@ -20,31 +20,31 @@ setenv PRINTER lp
 # Set the build environment
 
 setenv LANG C
-setenv HOST_OS LINUX
-setenv INSTALL_DIR $HOME/lrose
-setenv RAP_MAKE_INC_DIR $INSTALL_DIR/make_include
-setenv RAP_MAKE_BIN_DIR $INSTALL_DIR/make_bin
-setenv RAP_INC_DIR $INSTALL_DIR/include
-setenv RAP_LIB_DIR $INSTALL_DIR/lib
-setenv RAP_BIN_DIR $INSTALL_DIR/bin
-setenv RAP_SHARED_INC_DIR $INSTALL_DIR/include
-setenv RAP_SHARED_LIB_DIR $INSTALL_DIR/lib
-setenv RAP_SHARED_BIN_DIR $INSTALL_DIR/bin
-setenv RAP_INST_LIB_DIR $INSTALL_DIR/lib
-setenv RAP_MAN_DIR $INSTALL_DIR/man
-setenv RAP_DOC_DIR $INSTALL_DIR/doc
+setenv HOST_OS LINUX_CX11
 
-# CVS
+setenv LROSE_INSTALL_DIR $HOME/lrose
+setenv LROSE_CORE_DIR $HOME/git/lrose-core
+setenv CODEBASE $HOME/git/lrose-core/codebase
 
-setenv CVSUSER titan5
-setenv CVSROOT :pserver:${CVSUSER}@localhost:/cvs
+setenv RAP_LIB_DIR $LROSE_INSTALL_DIR/lib
+setenv RAP_BIN_DIR $LROSE_INSTALL_DIR/bin
+
+setenv RAP_MAKE_INC_DIR $CODEBASE/make_include
+setenv RAP_MAKE_BIN_DIR $CODEBASE/make_bin
+
+setenv RAP_INC_DIR $LROSE_INSTALL_DIR/include
+setenv RAP_MAN_DIR $LROSE_INSTALL_DIR/man
+setenv RAP_DOC_DIR $LROSE_INSTALL_DIR/doc
+
+setenv RAP_SHARED_INC_DIR $RAP_INC_DIR
+setenv RAP_SHARED_LIB_DIR $RAP_LIB_DIR
+setenv RAP_SHARED_BIN_DIR $RAP_BIN_DIR
+setenv RAP_SHARED_MAN_DIR $RAP_MAN_DIR
+setenv RAP_SHARED_DOC_DIR $RAP_DOC_DIR
 
 # --- OTHER BUILD SETTINGS
 
 setenv QTDIR /usr/local/qt4
-
-setenv RVP8_BIN_DIR $RAP_BIN_DIR
-setenv REFR_BIN_DIR $RAP_BIN_DIR
 
 setenv FC gfortran
 setenv GCC_WARNINGS -Wall
