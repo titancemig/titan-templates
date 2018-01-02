@@ -5,13 +5,13 @@
 # ~/projDir/bin
 #
 
-foreach dir (~/rap/bin*)
+foreach dir ($RAP_BIN_DIR)
   if (-d $dir) then
     cd $dir
     foreach file (*)
       if (-f $file && -x $file) then
         pkill $file >& /dev/null
-#       killall -q $file >& /dev/null
+        killall -q $file >& /dev/null
       endif
     end
   endif
