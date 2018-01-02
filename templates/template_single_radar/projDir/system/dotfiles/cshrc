@@ -63,7 +63,6 @@ setenv ANT_HOME /usr/local/ant
 
 # --- RUNTIME ---
 
-setenv DATA_HOST localhost
 setenv PROJ_DIR $HOME/projDir
 setenv TITAN_HOME $PROJ_DIR
 setenv DATA_DIR $PROJ_DIR/data
@@ -73,6 +72,11 @@ setenv LOG_DIR $DATA_DIR/logs
 setenv DATA_DISTRIB_LOG_DIR $LOG_DIR/distrib
 setenv ERRORS_LOG_DIR $LOG_DIR/errors
 setenv RESTART_LOG_DIR $LOG_DIR/restart
+
+setenv DATA_HOST localhost
+setenv MGEN_HOST localhost
+setenv PGEN_HOST localhost
+setenv DISPLAY_HOST localhost
 
 setenv PROCMAP_HOST localhost
 setenv DATA_MAPPER_ACTIVE true

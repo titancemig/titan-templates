@@ -133,7 +133,7 @@ mkdir -p $proj_dir
 echo
 echo "  copying project files to $proj_dir ..."
 
-/bin/cp -r ../../* $proj_dir
+/bin/cp -r projDir ${HOME}
 
 #--------------------------------------------------------------------
 # copy .cshrc and .emacs files
@@ -141,7 +141,7 @@ echo "  copying project files to $proj_dir ..."
 if [ "$copy_dot_cshrc" == yes ]
 then
     cshrc_file=${HOME}/.cshrc
-    titan_cshrc=../dotfiles/cshrc
+    titan_cshrc=projDir/system/dotfiles/cshrc
     if [ -e $cshrc_file ]
     then
 	save_cshrc_file=${HOME}/save.cshrc.${year}${month}${day}.${hour}${min}${sec}
@@ -157,7 +157,7 @@ fi
 if [ "$copy_dot_emacs" == yes ]
 then
     emacs_file=${HOME}/.emacs
-    titan_emacs=../dotfiles/emacs
+    titan_emacs=projDir/system/dotfiles/emacs
     if [ -e $emacs_file ]
     then
 	save_emacs_file=${HOME}/save.emacs.${year}${month}${day}.${hour}${min}${sec}

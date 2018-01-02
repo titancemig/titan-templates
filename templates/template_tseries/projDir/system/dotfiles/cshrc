@@ -1,5 +1,5 @@
 #########################################
-# .cshrc file for TITAN dual-pol project
+# .cshrc file for TITAN project
 #########################################
 
 if ( $?prompt ) then
@@ -20,38 +20,37 @@ setenv PRINTER lp
 # Set the build environment
 
 setenv LANG C
-setenv HOST_OS LINUX
-setenv INSTALL_DIR $HOME/rap
-setenv RAP_MAKE_INC_DIR $INSTALL_DIR/make_include
-setenv RAP_MAKE_BIN_DIR $INSTALL_DIR/make_bin
-setenv RAP_INC_DIR $INSTALL_DIR/include
-setenv RAP_LIB_DIR $INSTALL_DIR/lib
-setenv RAP_BIN_DIR $INSTALL_DIR/bin
-setenv RAP_SHARED_INC_DIR $INSTALL_DIR/include
-setenv RAP_SHARED_LIB_DIR $INSTALL_DIR/lib
-setenv RAP_SHARED_BIN_DIR $INSTALL_DIR/bin
-setenv RAP_INST_LIB_DIR $INSTALL_DIR/lib
-setenv RAP_MAN_DIR $INSTALL_DIR/man
-setenv RAP_DOC_DIR $INSTALL_DIR/doc
+setenv HOST_OS LINUX_CX11
 
-# CVS
+setenv LROSE_INSTALL_DIR $HOME/lrose
+setenv LROSE_CORE_DIR $HOME/git/lrose-core
+setenv CODEBASE $HOME/git/lrose-core/codebase
 
-setenv CVSUSER titan5
-setenv CVSROOT :pserver:${CVSUSER}@localhost:/cvs
+setenv RAP_LIB_DIR $LROSE_INSTALL_DIR/lib
+setenv RAP_BIN_DIR $LROSE_INSTALL_DIR/bin
+
+setenv RAP_MAKE_INC_DIR $CODEBASE/make_include
+setenv RAP_MAKE_BIN_DIR $CODEBASE/make_bin
+
+setenv RAP_INC_DIR $LROSE_INSTALL_DIR/include
+setenv RAP_MAN_DIR $LROSE_INSTALL_DIR/man
+setenv RAP_DOC_DIR $LROSE_INSTALL_DIR/doc
+
+setenv RAP_SHARED_INC_DIR $RAP_INC_DIR
+setenv RAP_SHARED_LIB_DIR $RAP_LIB_DIR
+setenv RAP_SHARED_BIN_DIR $RAP_BIN_DIR
+setenv RAP_SHARED_MAN_DIR $RAP_MAN_DIR
+setenv RAP_SHARED_DOC_DIR $RAP_DOC_DIR
 
 # --- OTHER BUILD SETTINGS
 
-setenv QTDIR /usr/local/qt4
-
-setenv RVP8_BIN_DIR $RAP_BIN_DIR
-setenv REFR_BIN_DIR $RAP_BIN_DIR
-
+setenv QTDIR /usr/lib64/qt4
 setenv FC gfortran
 setenv GCC_WARNINGS -Wall
 
 # --- LD library path --
 
-setenv LD_LIBRARY_PATH $QTDIR/lib:/usr/local/lib
+setenv LD_LIBRARY_PATH $QTDIR/lib:$RAP_LIB_DIR
 
 # --- NCAR GRAPHICS ---
 
@@ -64,12 +63,8 @@ setenv ANT_HOME /usr/local/ant
 
 # --- RUNTIME ---
 
-setenv MGEN_HOST localhost
-setenv PGEN_HOST localhost
-setenv DISPLAY_HOST localhost
-
-setenv DATA_HOST $PGEN_HOST
 setenv PROJ_DIR $HOME/projDir
+setenv TITAN_HOME $PROJ_DIR
 setenv DATA_DIR $PROJ_DIR/data
 setenv RAP_DATA_DIR $DATA_DIR
 setenv TMP_DIR $DATA_DIR/tmp
@@ -78,6 +73,11 @@ setenv DATA_DISTRIB_LOG_DIR $LOG_DIR/distrib
 setenv ERRORS_LOG_DIR $LOG_DIR/errors
 setenv RESTART_LOG_DIR $LOG_DIR/restart
 
+setenv DATA_HOST localhost
+setenv MGEN_HOST localhost
+setenv PGEN_HOST localhost
+setenv DISPLAY_HOST localhost
+
 setenv PROCMAP_HOST localhost
 setenv DATA_MAPPER_ACTIVE true
 setenv LDATA_FMQ_ACTIVE true
@@ -85,7 +85,7 @@ setenv LDATA_FMQ_ACTIVE true
 setenv DS_COMM_TIMEOUT_MSECS 60000
 setenv DS_PING_TIMEOUT_MSECS 20000
 
-# --- site params --- 
+# --- site info --- 
 
 if (-f $PROJ_DIR/system/params/site_params) then
   source $PROJ_DIR/system/params/site_params
@@ -111,8 +111,7 @@ if ($?INSTALL_DIR) then
   endif
 endif
 
-set path = ($path ~/bin \
-        $RAP_BIN_DIR \
+set path = ($path ~/lrose/bin ~/bin \
         /opt/local/bin \
 	$JAVA_HOME/bin $ANT_HOME/bin \
 	$NCARG_ROOT/bin \
@@ -137,8 +136,7 @@ if ($?prompt) then
   set prompt = "%m:%~%# "             # tcsh
   set showdots                        # tcsh
   set watch = (1 root any)            # tcsh
-  set savehist=0
-  set history=200
+  set history=1000
   set nobeep
   set time = 5
 
@@ -199,6 +197,8 @@ if ($?prompt) then
   alias saveiso2dvd 'growisofs -dvd-compat -Z /dev/dvd='
 
 #    eval `dircolors ~/.dircolors`      # Set up color-ls variables.
+
+  setprompt
 
 endif
 

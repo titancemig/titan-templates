@@ -1,61 +1,40 @@
-#############################################
-# .cshrc file
-#
-# Titan
-#
-# Mike Dixon April 2004
-#############################################
+#########################################
+# .cshrc file for TITAN project
+#########################################
 
-# --- basic --- 
+if ( $?prompt ) then
+  set prompt = "`hostname`:\!>"
+  set autoexpand
+  set autolist
+  set cdpath = ( ~ )
+  set pushdtohome
+endif
+
+unset autologout
+set autologout=0
 
 umask 002
 setenv TAPE /dev/st0
 setenv PRINTER lp
 
-# --- runtime --- 
+# Set the build environment
 
-setenv PROJ_DIR $HOME/projDir
-setenv TITAN_HOME $PROJ_DIR
-setenv DATA_DIR $PROJ_DIR/data
-setenv RAP_DATA_DIR $DATA_DIR
-setenv PROCMAP_HOST localhost
-setenv DATA_MAPPER_ACTIVE true
-setenv LDATA_FMQ_ACTIVE true
-setenv DATA_DISTRIB_LOG_DIR $PROJ_DIR/logs/distrib
-setenv ERRORS_LOG_DIR $PROJ_DIR/logs/errors
-setenv RESTART_LOG_DIR $PROJ_DIR/logs/restart
-setenv DS_COMM_TIMEOUT_MSECS 60000
-setenv PAPER_SIZE 500x700+60+60
-setenv CVSUSER titan5
+setenv LANG C
+setenv HOST_OS LINUX_CX11
 
-# --- radar info --- 
+setenv LROSE_INSTALL_DIR $HOME/lrose
+setenv LROSE_CORE_DIR $HOME/git/lrose-core
+setenv CODEBASE $HOME/git/lrose-core/codebase
 
-if (-f $PROJ_DIR/system/params/site_params) then
-  source $PROJ_DIR/system/params/site_params
-endif
+setenv RAP_LIB_DIR $LROSE_INSTALL_DIR/lib
+setenv RAP_BIN_DIR $LROSE_INSTALL_DIR/bin
 
-# --- local additions --- 
+setenv RAP_MAKE_INC_DIR $CODEBASE/make_include
+setenv RAP_MAKE_BIN_DIR $CODEBASE/make_bin
 
-if (-f $HOME/.cshrc.local) then
-  source $HOME/.cshrc.local
-endif
-setenv CVSROOT :pserver:${CVSUSER}@localhost:/cvs
-
-# --- build ---
-
-# setenv GCC_WARNINGS -Wall
-setenv HOST_OS LINUX
-
-setenv WORK $HOME/rap
-
-setenv RAP_MAKE_INC_DIR $WORK/make_include
-setenv RAP_MAKE_BIN_DIR $WORK/make_bin
-
-setenv RAP_INC_DIR $WORK/include
-setenv RAP_LIB_DIR $WORK/lib
-setenv RAP_BIN_DIR $WORK/bin
-setenv RAP_MAN_DIR $WORK/man
-setenv RAP_DOC_DIR $WORK/doc
+setenv RAP_INC_DIR $LROSE_INSTALL_DIR/include
+setenv RAP_MAN_DIR $LROSE_INSTALL_DIR/man
+setenv RAP_DOC_DIR $LROSE_INSTALL_DIR/doc
 
 setenv RAP_SHARED_INC_DIR $RAP_INC_DIR
 setenv RAP_SHARED_LIB_DIR $RAP_LIB_DIR
@@ -63,37 +42,62 @@ setenv RAP_SHARED_BIN_DIR $RAP_BIN_DIR
 setenv RAP_SHARED_MAN_DIR $RAP_MAN_DIR
 setenv RAP_SHARED_DOC_DIR $RAP_DOC_DIR
 
-setenv RAP_INSTALL_DIR $WORK
-setenv RAP_INST_LIB_DIR $RAP_INSTALL_DIR/lib
-setenv RAP_INST_BIN_DIR $RAP_INSTALL_DIR/bin
-setenv RAP_INST_INC_DIR $RAP_INC_DIR
+# --- OTHER BUILD SETTINGS
 
-setenv JAVA_HOME /opt/j2sdk
-setenv RAP_INST_JAVA_DIR $RAP_INSTALL_DIR/java/dist/lib
+setenv QTDIR /usr/lib64/qt4
+setenv FC gfortran
+setenv GCC_WARNINGS -Wall
 
-setenv CLASSPATH .:${RAP_INST_JAVA_DIR}:${WORK}/java/src:${WORK}/java/src/jdom.jar
+# --- LD library path --
 
-# --- netcdf ---
-#
-# setenv CC /usr/bin/gcc
-# setenv CPPFLAGS '-DNDEBUG -Df2cFortran'
-# setenv CFLAGS -O
-# setenv FC /usr/bin/g77
-# setenv FFLAGS '-O -Wno-globals'
-# setenv CXX /usr/bin/g++
+setenv LD_LIBRARY_PATH $QTDIR/lib:$RAP_LIB_DIR
+
+# --- NCAR GRAPHICS ---
+
+setenv NCARG_ROOT /usr/local/ncarg
+
+# --- JAVA ---
+
+setenv JAVA_HOME /usr/java/latest
+setenv ANT_HOME /usr/local/ant
+
+# --- RUNTIME ---
+
+setenv PROJ_DIR $HOME/projDir
+setenv TITAN_HOME $PROJ_DIR
+setenv DATA_DIR $PROJ_DIR/data
+setenv RAP_DATA_DIR $DATA_DIR
+setenv TMP_DIR $DATA_DIR/tmp
+setenv LOG_DIR $DATA_DIR/logs
+setenv DATA_DISTRIB_LOG_DIR $LOG_DIR/distrib
+setenv ERRORS_LOG_DIR $LOG_DIR/errors
+setenv RESTART_LOG_DIR $LOG_DIR/restart
+
+setenv DATA_HOST localhost
+setenv MGEN_HOST localhost
+setenv PGEN_HOST localhost
+setenv DISPLAY_HOST localhost
+
+setenv PROCMAP_HOST localhost
+setenv DATA_MAPPER_ACTIVE true
+setenv LDATA_FMQ_ACTIVE true
+
+setenv DS_COMM_TIMEOUT_MSECS 60000
+setenv DS_PING_TIMEOUT_MSECS 20000
+
+# --- site info --- 
+
+if (-f $PROJ_DIR/system/params/site_params) then
+  source $PROJ_DIR/system/params/site_params
+endif
 
 # --- Path ---
-#
+
 # Assemble path to include all scripts directories
 # then projDir/bin, then the rest
 
-set path = ($RAP_INST_BIN_DIR ~/bin \
-	    $RAP_BIN_DIR $JAVA_HOME/bin \
-	    /usr/java/bin /usr/local/bin /usr/local/sbin \
-	    /usr/X11R6/bin /usr/bin /usr/sbin /bin /sbin . )
-
-if (-d $PROJ_DIR) then
-  /bin/mkdir -p $PROJ_DIR/junk
+set path = (.)
+if ( -d $PROJ_DIR ) then
   foreach dir ($PROJ_DIR/*)
     if (-d $dir/scripts) then
       set path = ($path $dir/scripts)
@@ -101,8 +105,25 @@ if (-d $PROJ_DIR) then
   end
 endif
 
-# --- Interactive shells only - aliases etc. ---
+if ($?INSTALL_DIR) then
+  if ( -d $INSTALL_DIR/bin ) then
+    set path = ($path $INSTALL_DIR/bin)
+  endif
+endif
 
+set path = ($path ~/lrose/bin ~/bin \
+        /opt/local/bin \
+	$JAVA_HOME/bin $ANT_HOME/bin \
+	$NCARG_ROOT/bin \
+        /usr/X11R6/bin /usr/sbin /usr/bin /sbin /bin \
+	/usr/bin/X11 /usr/local/bin /usr/local/sbin \
+	/opt/gfortran/irun/bin /opt/spol/bin \
+        /usr/sigmet/bin /usr/sigmet/bin/rda )
+
+# -- core files --
+# unlimit coredumpsize
+
+# --- Aliases ---
 if ($?prompt) then
 
   alias sc source ~/.cshrc
@@ -112,67 +133,72 @@ if ($?prompt) then
   alias push 'pushd \!*; cd .'
   alias pop 'popd; cd .'
 
-  alias ppl '\!* -print_params | less'
+  set prompt = "%m:%~%# "             # tcsh
+  set showdots                        # tcsh
+  set watch = (1 root any)            # tcsh
+  set history=1000
+  set nobeep
+  set time = 5
 
-  alias ls 'ls -F'
-  alias dir 'ls -lgF \!* | more'
-  set history=100
-  alias h history 40
+  setenv EDITOR emacs
+  setenv PAGER less
+  setenv LESS "-cMe"
+  setenv LESSOPEN "|lesspipe.sh %s"
+  setenv LESSCHARSET latin1
+
+  alias h history
+  alias ssh 'ssh -X'
 
   alias rm 'rm -i'
   alias mv 'mv -i'
   alias cp 'cp -i' 
 
-  alias df 'df -k'
+  alias df 'df -h'
   set filec
   set fignore = (.o .ln)
 
   alias catw 'cat `which \!*`'
   alias lessw 'less `which \!*`'
-  alias editw 'emacs -nw `which \!*`'
+  alias emacsw 'emacs -nw `which \!*`'
+  alias viw 'vi `which \!*`'
 
-  # stty intr 
-  # stty erase 
-  # set ttystr = `tty`
-  # set host = `hostname | sed -e 's/\..*$//'`
-
-  alias ensc 'enscript -2r -fCourier7'
-
-  # limit coredumpsize unlilmited
-
-  alias ppm 'print_procmap -hb -up -status'
-  alias pdm 'PrintDataMap -all -relt -lreg'
-  alias pcheck 'procmap_list_check -proc_list ~/projDir/control/proc_list'
-
-  #
-  # CVS
-  #
+  alias lst 'ls -l \!* | awk \{s+=\$4\}END\{print\ s\}'
+  alias la 'ls -la --color=tty'
+  alias ll 'ls -l --color=tty'
+  alias lt 'ls -lt --color=tty'
+  alias lat 'ls -alt --color=tty'
+  alias l 'ls -sF'
+  alias L ls -agl
+  alias LS ls -aFRts 
 
   alias xx 'xrdb ~/.Xdefaults'
-  alias rcvs 'cvs -d :pserver:${CVSUSER}@localhost:/cvs \!*'
-  alias cvsforward 'ssh -a -x -C -R 2401:localhost:2401'
+  alias cvs 'cvs -d :pserver:${CVSUSER}@localhost:/cvs \!*'
+  alias cvsforward 'ssh -a -x -C -Y -R 2401:localhost:2401'
   alias cvsin 'ssh -a -x -C -L 2401:cvs:2401'
   alias cvsout 'ssh -a -x -C -R 2401:cvs:2401'
-  alias ssh 'ssh -X'
-  alias relay 'xrdb ~/.Xdefaults; ssh ${CVSUSER}@relay.rap.ucar.edu'
+  alias gate 'ssh -a -x -C -L 2401:cvs.rap.ucar.edu:2401 titan5@gateway'
 
-  # working directories
+  alias psg 'ps axww | sed -n "1p; \|sed .*/\!*/|d; /\!*/p"'
+  alias pslg 'ps alxww | sed -n "1p; \|sed .*/\!*/|d; /\!*/p"'
+  alias psug 'ps auxww | sed -n "1p; \|sed .*/\!*/|d; /\!*/p"'
+  alias psx 'ps xww | grep -v LogFilter'
+  alias ensc 'enscript -2r -fCourier7'
 
-  alias cda 'cd $WORK/apps'
-  alias cdl 'cd $WORK/libs'
-  alias cdi 'cd $WORK/incs'
-  alias cdt 'cd $WORK/apps/titan/src'
-  alias cdta 'cd $WORK/apps/titan_analysis/src'
-  alias cdd 'cd $WORK/apps/didss/src'
-  alias cdds 'cd $WORK/apps/dsserver/src'
-  alias cdh 'cd $WORK/apps/hydro/src'
-  alias cdin 'cd $WORK/apps/ingest/src'
-  alias cdrdas 'cd $WORK/java/src/edu/ucar/rap/titan/RdasControl'
-  alias cdjrp 'cd $WORK/java/src/edu/ucar/rap/jrp'
+  alias print_procmap 'print_procmap -hb -up -status'
+  alias PrintDataMap 'PrintDataMap -all -relt -lreg'
+  alias ppm 'print_procmap -hb -up -status'
+  alias pdm 'PrintDataMap -all -relt -lreg'
+  alias pcheck 'procmap_list_check -proc_list $PROJ_DIR/control/proc_list'
+  alias ph 'get_host_type'
+
+# save to dvd
+
+  alias savedvd 'growisofs -Z /dev/dvd -r -J'
+  alias saveiso2dvd 'growisofs -dvd-compat -Z /dev/dvd='
+
+#    eval `dircolors ~/.dircolors`      # Set up color-ls variables.
+
+  setprompt
 
 endif
-
-# --- Reset the prompt ---
-
-cd .
 
