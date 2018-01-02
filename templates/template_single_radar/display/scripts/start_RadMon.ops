@@ -7,7 +7,7 @@ cd $PROJ_DIR/display/params
 running "RadMon -params RadMon.ops"
 if ($status == 1) then
 #  xterm -title RadMon -bg black -fg cyan -g 33x1-0+950 -e RadMon -params RadMon.ops &
-  xterm -title RadMon -bg black -fg cyan -g 33x1+1000+950 -e RadMon -params RadMon.ops &
+  xterm -title RadMon -bg black -fg cyan -g 33x1+950+950 -e RadMon -params RadMon.ops &
 endif
 
 #running "xclock -digital"

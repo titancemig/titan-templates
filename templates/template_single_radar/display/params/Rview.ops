@@ -323,6 +323,7 @@ Rview.dry_ice_color: white
 # If width_per_flare is 0, line widths will always be 1.
 
 Rview.line_width_per_flare: 2
+Rview.dry_ice_line_width: 3
 
 # linestyes not yet implemeted
 
